@@ -43,6 +43,7 @@ dojo.declare("bespin.client.Server", null, {
         // Stores the outstanding asynchronous tasks that we've submitted
         this._jobs = {};
         this._jobsCount = 0;
+        this._cmdBase = '/cmd/';
     },
 
     // == Helpers ==
@@ -272,6 +273,7 @@ dojo.declare("bespin.client.Server", null, {
     // ** {{{ _poll() }}}
     // Starts up message retrieve for this user. Call this only once.
     _poll: function() {
+        debugger; // Should not be necesary
         var self = this;
 
         this.request('POST', '/messages/', null, {
@@ -301,11 +303,19 @@ dojo.declare("bespin.client.Server", null, {
     // Generic system to read resources from a URL and return the read data to
     // a callback.
     fetchResource: function(name, onSuccess, onFailure) {
+        debugger; // why do we need this?
         this.request('GET', name, null, {
             onSuccess: onSuccess,
             onFailure: onFailure
         });
     },
+    
+    getUrl: function(cmd, params) {
+        var getParams = [];
+        for (var key in params) { getParams.push(escape(key) + '=' + escape(params[key])) }
+        return '/cmd/php/' + cmd + '/' + (getParams.length ? '?' : '') + getParams.join('&');
+    },
+    
 
     // == USER ==
 
@@ -437,15 +447,12 @@ dojo.declare("bespin.client.Server", null, {
     // * {{{path}}} is the path to load
     // * {{{onSuccess}}} fires after the file is loaded
     loadFile: function(project, path, onSuccess, onFailure) {
-        project = project || '';
-        path = path || '';
-        var url = bespin.util.path.combine('/file/at', project, path);
         var opts = { onSuccess: onSuccess };
         if (dojo.isFunction(onFailure)) opts.onFailure = onFailure;
 
-        this.request('GET', url, null, opts);
+        this.request('GET', this.getUrl('open', { base: project || '', path: path || '' }), null, opts);
     },
-
+    
     // ** {{{ removeFile(project, path, onSuccess, onFailure) }}}
     //
     // Remove the given file

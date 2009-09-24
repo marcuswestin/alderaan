@@ -109,15 +109,15 @@ dojo.declare("bespin.client.FileSystem", null, {
     // * {{{onSuccess}}} is a callback to fire if the file is loaded
     editFile: function(project, path, onSuccess, onFailure) {
         var session = bespin.get('editSession');
-        if (session.shouldCollaborate()) {
-            session.startSession(project, path, onSuccess, onFailure);
-        } else {
+        // if (session.shouldCollaborate()) {
+        //     session.startSession(project, path, onSuccess, onFailure);
+        // } else {
             var localOnSuccess = function() {
-                session.setReadOnlyIfNotMyProject(project);
+                // session.setReadOnlyIfNotMyProject(project);
                 onSuccess.apply(null, arguments);
             };
             this.loadContents(project, path, localOnSuccess, onFailure);
-        }
+        // }
     },
 
     // Open a file amd eval it in a given scope
