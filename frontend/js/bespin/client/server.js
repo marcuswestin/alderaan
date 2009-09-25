@@ -429,14 +429,10 @@ dojo.declare("bespin.client.Server", null, {
     // * {{{contents}}} fires after the save returns
     // * {{{lastOp}}} contains the last edit operation
     saveFile: function(project, path, contents, lastOp, opts) {
-        if (!project || !path) return;
         opts = opts || {};
         opts.log = 'Saved file "' + project + '/' + path+ '"';
-
-        var url = bespin.util.path.combine('/file/at', project, (path || ''));
-        if (lastOp) url += "?lastEdit=" + lastOp;
-
-        this.request('PUT', url, contents, opts);
+        
+        this.request('PUT', this.getUrl('save', { base: project || '', path: path }), contents, opts);
     },
 
     // ** {{{ loadFile(project, path, contents) }}}
