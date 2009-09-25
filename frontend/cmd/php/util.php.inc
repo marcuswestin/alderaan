@@ -1,6 +1,9 @@
 <?php
-    // error_reporting(0);//E_ERROR | E_WARNING | E_PARSE);
+    // error_reporting(0);
+    //error_reporting(E_ERROR | E_WARNING | E_PARSE);
+    error_reporting(E_ERROR | E_PARSE);
 
+    // Bases should *not* end in a /
     $bespin_bases = array(
         'Default' => '/Library/WebServer/Documents/marcuswestin.com/simply-bespin/Store'
     );
@@ -11,18 +14,19 @@
         exit(0);
     }
     
-    function bespin_get_file_name($path, $base = '') {
-        // if (!$base || $base == '') { 
-        //     global $bespin_bases;
-        //     
-        // }
+    function bespin_get_file_name($path, $base = 'Default') {
         global $bespin_bases;
-        $base = $bespin_bases['Default']; 
-        $file = $base . $path;
-        if (strpos($file, '..') == FALSE and strpos($file, '~') == FALSE) {
-            return $file;
-        } else {
-            bespin_error('.. and ~ are not allowed in file paths');
+        
+        if (!array_key_exists($base, $bespin_bases)) { 
+            bespin_error('Not an allowed base: '. $base); 
         }
+        
+        if (strpos($path, '..') != FALSE or strpos($path, '//') != FALSE or strpos($path, '~') != FALSE) {
+            bespin_error('tsk tsk, stay in your sandbox (.., // and ~ are not allowed in file paths)');
+        }
+        
+        if (substr($path, 0, 1) != '/') {  $path = '/' . $path; }
+        
+        return $bespin_bases[$base] . $path;
     }
 ?>

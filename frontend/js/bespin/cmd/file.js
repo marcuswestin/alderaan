@@ -107,12 +107,12 @@ bespin.command.store.addCommand({
 bespin.command.store.addCommand({
     name: 'open',
     aliases: ['load'],
-    takes: ['path', 'line'],
+    takes: ['path'],
     preview: 'load up the contents of the file',
     completeText: 'add the filename to open',
-    execute: function(instruction, opts) {
-        var info = bespin.cmd.file._parseArguments(opts.path);
-        bespin.get("editor").openFile(info.project, info.path, { line: opts.line });
+    execute: function(instruction, path) {
+        var editSession = bespin.get('editSession');
+        bespin.get("editor").openFile(editSession.project, path, {});
         bespin.publish("ui:escape", {});
     },
     findCompletions: function(query, callback) {

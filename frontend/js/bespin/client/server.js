@@ -446,7 +446,7 @@ dojo.declare("bespin.client.Server", null, {
         var opts = { onSuccess: onSuccess };
         if (dojo.isFunction(onFailure)) opts.onFailure = onFailure;
 
-        this.request('GET', this.getUrl('open', { base: project || '', path: path || '' }), null, opts);
+        this.request('GET', this.getUrl('open', { base: project || '', path: path }), null, opts);
     },
     
     // ** {{{ removeFile(project, path, onSuccess, onFailure) }}}
