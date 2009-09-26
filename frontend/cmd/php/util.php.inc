@@ -1,7 +1,7 @@
 <?php
     // error_reporting(0);
-    //error_reporting(E_ERROR | E_WARNING | E_PARSE);
-    error_reporting(E_ERROR | E_PARSE);
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+    // error_reporting(E_ERROR | E_PARSE);
 
     // Bases should *not* end in a /
     $bespin_bases = array(
@@ -21,7 +21,8 @@
             bespin_error('Not an allowed base: '. $base); 
         }
         
-        if (strpos($path, '..') != FALSE or strpos($path, '//') != FALSE or strpos($path, '~') != FALSE) {
+        $path = str_replace('//', '/', $path);
+        if (strpos($path, '..') != FALSE or strpos($path, '~') != FALSE) {
             bespin_error('tsk tsk, stay in your sandbox (.., // and ~ are not allowed in file paths)');
         }
         
