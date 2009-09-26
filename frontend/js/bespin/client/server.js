@@ -431,7 +431,7 @@ dojo.declare("bespin.client.Server", null, {
     saveFile: function(project, path, contents, lastOp, opts) {
         opts = opts || {};
         opts.log = 'Saved file "' + project + '/' + path+ '"';
-        
+
         this.request('PUT', this.getUrl('save', { base: project || '', path: path }), contents, opts);
     },
 
