@@ -4,4 +4,4 @@
     * Create refresh command that reload state from backend
 * Password protect projects?
 * Rename to BespinMate or BespMate?
-
+* Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
