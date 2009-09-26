@@ -7,11 +7,20 @@ body {
     -moz-user-select: none;
 }
 
+#fileTree {
+    width: 100px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
 #header {
     height: 38px;
 /*    background-image: url("../images/toolbar_main_bg.gif");*/
     background-image: url("../images/toolbar_sub_bg2.png");
     overflow: hidden;
+    margin-left: 100px;
 }
 
 #home {
@@ -29,10 +38,10 @@ body {
 
 #editor {
     position: absolute;
-    top: 32px;
+    top: 38px;
     bottom: 0;
     right: 0;
-    left: 0;
+    left: 100px;
     z-index: -1;
     margin: 0;
     padding: 0;
