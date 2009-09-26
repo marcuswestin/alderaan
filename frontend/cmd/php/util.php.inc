@@ -5,7 +5,7 @@
 
     // Bases should *not* end in a /
     $bespin_bases = array(
-        'Default' => '/Library/WebServer/Documents/marcuswestin.com/simply-bespin/Store'
+        'Default' => '/Library/WebServer/Documents/marcuswestin.com/simply-bespin/frontend'
     );
     
     function bespin_error($message) {

@@ -8,7 +8,7 @@ body {
 }
 
 #fileTree {
-    width: 100px;
+    width: 200px;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -20,7 +20,7 @@ body {
 /*    background-image: url("../images/toolbar_main_bg.gif");*/
     background-image: url("../images/toolbar_sub_bg2.png");
     overflow: hidden;
-    margin-left: 100px;
+    margin-left: 200px;
 }
 
 #home {
@@ -41,7 +41,7 @@ body {
     top: 38px;
     bottom: 0;
     right: 0;
-    left: 100px;
+    left: 200px;
     z-index: -1;
     margin: 0;
     padding: 0;
