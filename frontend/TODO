@@ -1,7 +1,7 @@
 * Create split view with multiple files open
 * Create file tree of current project
     * Load entire project directory structure upon startup
-    * Create refresh command that reloads state from backend
+    * Create refresh command that reload state from backend
 * Password protect projects?
 * Rename to BespinMate or BespMate?
 
