@@ -2,17 +2,18 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
-	background-color: #2A211C;
+/*  background-color: #2A211C;*/
     -webkit-user-select: none;
     -moz-user-select: none;
 }
 
 #fileTree {
-    width: 200px;
+    width: 190px;
     position: absolute;
     top: 0px;
     left: 0px;
-    overflow: hidden;
+    overflow: auto;
+    padding: 0 5px;
 }
 
 #header {

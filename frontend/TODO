@@ -1,6 +1,5 @@
 * Create split view with multiple files open
-* Create file tree of current project
-    * Load entire project directory structure upon startup
+* Load entire project directory structure upon startup
     * Create refresh command that reload state from backend
 * Password protect projects?
 * Rename to BespinMate or BespMate?
@@ -8,4 +7,6 @@
 * Move all DOM creation from HTML to CSS
 * Add git command to pipe input in and out of git
     * How do we make this secure? Do we have to?
+
+(DONE) * Create file tree of current project
 
