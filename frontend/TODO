@@ -10,10 +10,14 @@
 
 (Start digging into the command line, and see what it's capable of)
 
+* Support soft spaces
 * Load entire project directory structure upon startup
     * Create refresh command that reload state from backend
 * Password protect projects?
 * Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
+    * Clean up path names in general. Shouldn't have a bunch of // and /./ in there
+
+
 * Move all DOM creation from HTML to CSS
 * Add git command to pipe input in and out of git
     * How do we make this secure? Do we have to?
