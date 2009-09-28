@@ -1,27 +1,29 @@
+TODO - good stuff to work on
+
+==== 1 =================
+
 * Create split view with multiple files open
-* Remove header, and all the features
-* Fix small and large font sizes - cursor is off 
-* Add search over all files - front end or back end?
+* Make command line execute any commands - just pipe input and output back and forth
 * Rename - BespinMate, BespMate?
-* Add file open by typing name of file (cmd-T in TextMate)
-
-* Should be able to load settings from any URL
-* Should be able to import any project from e.g. github
-
-(Start digging into the command line, and see what it's capable of)
-
-* Support soft spaces
-* Load entire project directory structure upon startup
-    * Create refresh command that reload state from backend
-* Password protect projects?
 * Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
     * Clean up path names in general. Shouldn't have a bunch of // and /./ in there
 
+==== 2 =================
 
+* Remove header, and all the features
+* Add file open by typing name of file (cmd-T in TextMate)
+* Create refresh command that reloads file tree and text file state from backend
+* Password protection?
 * Move all DOM creation from HTML to CSS
-* Add git command to pipe input in and out of git
-    * How do we make this secure? Do we have to?
 
+==== 3 =================
 
-(DONE) * Create file tree of current project
+* Fix small and large font sizes - cursor is off 
+* Add search over all files - front end or back end?
+* Should be able to load settings from any URL
+* Should be able to import any project from e.g. github
+
+==== ? ==================
+* Load entire project directory structure upon startup
+    
 
