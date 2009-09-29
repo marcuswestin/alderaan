@@ -5,7 +5,7 @@
 
     // Bases should *not* end in a /
     $bespin_bases = array(
-        'Default' => '.'
+        'Default' => '../../..'
     );
     
     function bespin_error($message) {
