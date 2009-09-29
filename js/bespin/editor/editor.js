@@ -2126,7 +2126,7 @@ dojo.declare("bespin.editor.API", null, {
         };
 
         var newOnSuccess = function() {
-            document.title = filename + ' - editing with Bespin';
+            document.title = filename + ' - editing with Alderaan';
 
             var commandLine = bespin.get("commandLine");
             if (commandLine) commandLine.showHint('Saved file: ' + file.name);

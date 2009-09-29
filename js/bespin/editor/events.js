@@ -51,7 +51,7 @@ dojo.declare("bespin.editor.Events", null, {
                 console.log("Error setting in the view: ", e);
             }
 
-            document.title = filename + ' - editing with Bespin';
+            document.title = filename + ' - editing with Alderaan';
 
             bespin.publish("url:change", { project: project, path: filename });
         });
