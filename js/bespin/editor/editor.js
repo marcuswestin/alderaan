@@ -917,6 +917,8 @@ dojo.declare("bespin.editor.UI", null, {
 
         listener.bindKeyString("CTRL", Key.K, this.actions.killLine, "Kill entire line");
         listener.bindKeyString("CMD", Key.L, this.actions.gotoLine, "Goto Line");
+        listener.bindKeyString("CMD", Key.E, this.actions.executeCommand, "Execute Command");
+        
         listener.bindKeyString("CTRL", Key.L, this.actions.moveCursorRowToCenter, "Move cursor to center of page");
 
         listener.bindKeyStringSelectable("", Key.BACKSPACE, this.actions.backspace, "Backspace");

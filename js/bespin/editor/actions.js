@@ -881,6 +881,15 @@ dojo.declare("bespin.editor.Actions", null, {
         });
     },
     
+    executeCommand: function() {
+        bespin.getComponent("commandLine", function(cli) {
+            cli.setCommandText("exec ");
+            bespin.getComponent("popup", function(popup) {
+                popup.show("output");
+            });
+        });
+    },
+    
     cmdFilesearch: function() {
         bespin.getComponent("commandLine", function(cli) {
             cli.setCommandText("search ");

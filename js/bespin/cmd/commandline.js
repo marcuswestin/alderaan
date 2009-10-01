@@ -365,7 +365,7 @@ members: {
         var scrollHeight = Math.max(this.output.scrollHeight, this.output.clientHeight);
         this.output.scrollTop = scrollHeight - this.output.clientHeight;
     },
-
+        
     /**
      * Redraw the table of executed commands
      */
@@ -685,6 +685,11 @@ members: {
             self.updateOutput();
             self.scrollConsole();
         });
+        
+//        console.debug('executeCommand', arguments, instruction);
+//        bespin.get('server').executeCommand(typed, dojo.hitch(this, function(response){          
+//            //this.addOutput(response);
+//        }));
 
         instruction.exec();
         return instruction;
@@ -1232,3 +1237,5 @@ members: {
         }
     }
 }});
+
+

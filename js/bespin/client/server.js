@@ -298,6 +298,15 @@ dojo.declare("bespin.client.Server", null, {
         });
     },
 
+
+    executeCommand: function(commandString, onSuccess, onFailure) {
+        var opts = { onSuccess: onSuccess };
+        if (dojo.isFunction(onFailure)) opts.onFailure = onFailure;
+
+        this.request('GET', this.getUrl('executeCommand', { commandString: commandString }), null, opts);
+    },
+
+
     // ** {{{ fetchResource() }}}
     //
     // Generic system to read resources from a URL and return the read data to

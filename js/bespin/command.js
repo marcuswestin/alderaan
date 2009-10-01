@@ -446,3 +446,21 @@ bespin.command.store.addCommand({
     }
 });
 
+
+bespin.command.store.addCommand({
+    name: 'exec',
+    takes: ['command'],
+    preview: 'Execute a terminal command on the server',
+    completeText: 'Execute a terminal command on the server',
+    execute: function(instruction, command) {
+        if (command) {
+            bespin.get('server').executeCommand(command, function(response){
+                instruction.addOutput('<div class="monospace">' + response.replace(/\n/gi, '<br />') + '</div>');
+                bespin.getComponent("commandLine", function(cli) {
+                    cli.setCommandText("exec ");
+                });
+            });
+        }
+    }
+});
+
