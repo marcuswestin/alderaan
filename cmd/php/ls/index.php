@@ -29,7 +29,7 @@
         echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"$dir/$folder/\">$folder</a></li>";
     }
     foreach ($file_array as $file) {
-        echo "<li class=\"file ext_css\"><a href=\"#\" rel=\"$dir/$file/\">$file</a></li>";
+        echo "<li class=\"file ext_css\"><a href=\"#\" rel=\"$dir/$file\">$file</a></li>";
     }
     echo '</ul>'
 ?>
