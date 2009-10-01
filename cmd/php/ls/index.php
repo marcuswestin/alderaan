@@ -4,17 +4,32 @@
 	$dir = $_GET['dir'];
 	$path = bespin_get_file_name($dir);
 	
-	// Open a known directory, and proceed to read its contents
+    $folder_array = array();
+    $file_array = array();
+
 	if (is_dir($path)) {
 	    if ($dh = opendir($path)) {
-	        echo '<ul class="jqueryFileTree" style="display: none;">';
-	        while (($file = readdir($dh)) !== false) {
-	            if (substr($file, 0, 1) == '.') { continue; }
-                $class_name = is_dir("$path/$file") ? 'directory' : 'file ext_css';
-	            $postfix = is_dir("$path/$file") ? '/' : '';
-	            echo "<li class=\"$class_name collapsed\"><a href=\"#\" rel=\"$dir/$file$postfix\">$file</a></li>";	                
-	        }
-	        closedir($dh);
-	    }
-	}
+	        while (($entry = readdir($dh)) !== false) {
+	            if (substr($entry, 0, 1) == '.') { continue; }
+                if (is_dir("$path/$entry")) {
+                    $folder_array[] = $entry;
+                } else {
+                    $file_array[] = $entry;
+                }
+            }
+            closedir($dh);
+        }
+    }
+
+    sort($folder_array);
+    sort($file_array);
+
+    echo '<ul class="jqueryFileTree" style="display: none;">';
+    foreach ($folder_array as $folder) {
+        echo "<li class=\"directory collapsed\"><a href=\"#\" rel=\"$dir/$folder/\">$folder</a></li>";
+    }
+    foreach ($file_array as $file) {
+        echo "<li class=\"file ext_css\"><a href=\"#\" rel=\"$dir/$file/\">$file</a></li>";
+    }
+    echo '</ul>'
 ?>
