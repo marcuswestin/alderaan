@@ -358,7 +358,10 @@ dojo.declare("bespin.editor.DefaultEditorKeyListener", null, {
             var action = this.keyMap[[e.keyCode, e.metaKey, e.ctrlKey, e.altKey, e.shiftKey]];
 
             if (this.lastAction == action) {
-                delete this.lastAction;
+                // For some f*ing reason, fluid calls onkeypress twice for tab and backspace. Have no idea what's actually wrong...
+                if (!window.fluid) {
+                    delete this.lastAction;
+                }
             } else if (typeof action == "function") {
                action(args);
             }
