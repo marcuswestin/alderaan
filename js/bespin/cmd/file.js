@@ -96,8 +96,11 @@ bespin.command.store.addCommand({
     completeText: 'add the filename to save as, or use the current file',
     withKey: "CMD S",
     execute: function(instruction, filename) {
-        // TODO: use onSuccess/onFail to report to the instruction
-        bespin.get("editor").saveFile(null, filename);
+        bespin.get("editor").saveFile(null, filename, null, function(){
+		var warning = 'Could not save ' + bespin.get('editSession').path;
+		if (filename) { warning += ' as ' + filename; }
+		alert(warning);
+	});
     }
 });
 
