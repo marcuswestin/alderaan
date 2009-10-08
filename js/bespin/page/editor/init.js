@@ -156,6 +156,10 @@ dojo.provide("bespin.page.editor.init");
         // -- Deal with the project label (project, filename, dirty flag)
         bespin.publish("bespin:editor:initialized", {});
         
+		var path = document.location.hash.substr(1);
+		if (path) {
+			bespin.get("editor").openFile(editSession.project, path, {});
+		}
     });
 
 })();
