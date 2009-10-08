@@ -377,7 +377,6 @@ members: {
             this.currentProject = item.name;
         }, this);
 
-        this.refreshProjects();
 
         var hitchedRefresh = dojo.hitch(this, this.refreshProjects);
         this.subscriptions.push(bespin.subscribe("project:created", hitchedRefresh));

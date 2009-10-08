@@ -395,14 +395,6 @@ dojo.declare("bespin.client.Server", null, {
     // * {{{path}}} is the path to list out
     // * {{{onSuccess}}} fires if the list returns something
     // * {{{onFailure}}} fires if there is an error getting a list from the server
-    list: function(project, path, onSuccess, onFailure) {
-        project = project || '';
-        var url = bespin.util.path.combine('/file/list/', project, path || '/');
-        var opts = { onSuccess: onSuccess, evalJSON: true, log: "Listing files in: " + url };
-        if (dojo.isFunction(onFailure)) opts.onFailure = onFailure;
-
-        this.request('GET', url, null, opts);
-    },
 
     // ** {{{ listAllFiles(project, onSuccess, onFailure) }}}
     //

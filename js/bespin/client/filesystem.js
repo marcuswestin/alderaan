@@ -151,14 +151,6 @@ dojo.declare("bespin.client.FileSystem", null, {
         this.server.projects(callback);
     },
 
-    // ** {{{ bespin.client.FileSystem.fileNames(callback) }}}
-    //
-    // Return a JSON representation of the files at the root of the given project
-    //
-    // * {{{callback}}} is a callback that fires given the files
-    fileNames: function(project, callback) {
-        this.server.list(project, '', callback);
-    },
 
     // ** {{{ bespin.client.FileSystem.saveFile(project, file) }}}
     //
@@ -259,17 +251,6 @@ dojo.declare("bespin.client.FileSystem", null, {
     // * {{{callbacks}}} is the pair of callbacks:
     //   execute (file exists)
     //   elseFailed (file does not exist)
-    whenFileExists: function(project, path, callbacks) {
-        this.server.list(project, bespin.util.path.directory(path), function(files) {
-            if (files && dojo.some(files, function(file){ return (file.name == path); })) {
-                callbacks['execute']();
-            } else {
-                if (callbacks['elseFailed']) callbacks['elseFailed']();
-            }
-        }, function(xhr) {
-            if (callbacks['elseFailed']) callbacks['elseFailed'](xhr);
-        });
-    },
 
     // ** {{{ bespin.client.FileSystem.whenFileDoesNotExist(project, path, callbacks) }}}
     //
@@ -280,15 +261,4 @@ dojo.declare("bespin.client.FileSystem", null, {
     // * {{{callbacks}}} is the pair of callbacks:
     //   execute (file does not exist)
     //   elseFailed (file exists)
-    whenFileDoesNotExist: function(project, path, callbacks) {
-        this.server.list(project, bespin.util.path.directory(path), function(files) {
-            if (!files || !dojo.some(files, function(file){ return (file.name == path); })) {
-                callbacks['execute']();
-            } else {
-                if (callbacks['elseFailed']) callbacks['elseFailed']();
-            }
-        }, function(xhr) {
-            callbacks['execute'](); // the list failed which means it didn't exist
-        });
-    }
 });

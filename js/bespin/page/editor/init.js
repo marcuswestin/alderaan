@@ -89,11 +89,8 @@ dojo.provide("bespin.page.editor.init");
         //
         // When a user resizes the window, deal with resizing the canvas and repaint
         doResize: function() {
-            var d = dojo.coords('status');
-            dojo.attr('projectStatus', { width: d.w, height: d.h });
 
             // Repaint the various canvas'
-            statusScene.paint();
             bespin.get('editor').paint();
         }
     });
@@ -157,97 +154,8 @@ dojo.provide("bespin.page.editor.init");
         dojo.connect(window, 'resize', bespin.page.editor, "doResize");
 
         // -- Deal with the project label (project, filename, dirty flag)
-        statusScene = new ProjectStatusScene();
         bespin.publish("bespin:editor:initialized", {});
         
     });
 
-    // The object that understands how to render the project label scene
-    // It paints "project name [status of clean or dirty] file name"
-    var ProjectStatusScene = function() {
-        var projectLabel, fileLabel, statusLabel, statusLabelWidth;
-
-        var scene = new th.Scene(dojo.byId("projectStatus"));
-        var panel = new th.Panel();
-
-        projectLabel = new th.Label({ className: "statusProject" });
-        statusLabel = new th.Label({ text: "–", className: "statusSymbol" });
-        fileLabel = new th.Label({ className: "statusFile" });
-
-        panel.add([ projectLabel, statusLabel, fileLabel ]);
-        panel.layout = function() {
-           var d = this.d();
-
-           var x = 0;
-
-           // Layout the project name
-           var width = this.children[0].getPreferredSize().width;
-           this.children[0].bounds = { x: x, y: 0, width: width, height: d.b.h };
-           x += width;
-
-           // Layout the status (save the clean statuses width)
-           if (!statusLabelWidth) statusLabelWidth = this.children[1].getPreferredSize().width;
-           this.children[1].bounds = { x: x, y: 0, width: statusLabelWidth, height: d.b.h };
-           x += statusLabelWidth;
-
-           // Layout the filename
-           var filenameWidth = d.b.w - d.i.w - x;
-           this.children[2].bounds = { x: x, y: 0, width: filenameWidth, height: d.b.h };
-        };
-        scene.root.add(panel);
-        scene.render();
-
-        // ** {{{ Event: editor:openfile:opensuccess }}} **
-        //
-        // When a file is opened successfully change the project and file status area.
-        // Then change the window title, and change the URL hash area
-        bespin.subscribe("editor:openfile:opensuccess", function(event) {
-            var project = event.project || bespin.get('editSession').project;
-            var filename = bespin.util.path.trimLeadingSlash(event.file.name);
-
-            // update the project label
-            projectLabel.text = project;
-            fileLabel.text = filename;
-            scene.render();
-        });
-
-        // ** {{{ Event: editor:dirty }}} **
-        //
-        // Add a notifier to show that the file is dirty and needs to be saved
-        bespin.subscribe("editor:dirty", function(event) {
-            statusLabel.text = "●";
-            scene.render();
-        });
-
-        // ** {{{ Event: editor:dirty }}} **
-        //
-        // Change the HTML title to change - to ● as a subtle indicator
-        bespin.subscribe("editor:dirty", function() {
-            document.title = document.title.replace('- editing with Bespin', '● editing with Bespin');
-        });
-
-        // ** {{{ Event: editor:clean }}} **
-        //
-        // Take away the notifier. Just saved
-        bespin.subscribe("editor:clean", function(event) {
-            statusLabel.text = "–";
-            scene.render();
-        });
-
-        // ** {{{ Event: editor:clean }}} **
-        //
-        // Take away the notifier from the HTML title.
-        bespin.subscribe("editor:clean", function(event) {
-            document.title = document.title.replace('● editing with Bespin', '- editing with Bespin');
-        });
-
-        return {
-            render: function() {
-                scene.render();
-            },
-            paint: function() {
-                scene.paint();
-            }
-        };
-    };
 })();

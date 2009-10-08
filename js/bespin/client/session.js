@@ -429,15 +429,6 @@ dojo.declare("bespin.client.session.EditSession", null, {
         dojo.style("collab_off", "display", stopped ? "block" : "none");
         dojo.style("collab_on",  "display", stopped ? "none" : "block");
 
-        if (stopped) {
-            dojo.attr("toolbar_collaboration", "src", "images/icn_collab_off.png");
-        } else {
-            if (userEntries.length > 1) {
-                dojo.attr("toolbar_collaboration", "src", "images/icn_collab_on.png");
-            } else {
-                dojo.attr("toolbar_collaboration", "src", "images/icn_collab_watching.png");
-            }
-        }
     },
 
     /**
