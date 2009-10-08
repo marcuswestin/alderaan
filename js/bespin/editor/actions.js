@@ -91,7 +91,7 @@ dojo.declare("bespin.editor.Actions", null, {
     },
 
     moveCursorLeft: function(args) {
-        return this.moveCursor("moveLeft", args);
+        return this.moveCursor("moveLeft", args) + 'asd';
     },
 
     moveCursorRight: function(args) {
