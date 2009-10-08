@@ -66,7 +66,7 @@ dojo.declare("bespin.client.settings.Core", null, {
     defaultSettings: function() {
         return {
             'tabsize': '4',
-            'tabmode': 'off',
+            'tabmode': 'on',
             'tabarrow': 'on',
             'fontsize': '10',
             'consolefontsize': '11',
