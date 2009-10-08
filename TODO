@@ -3,8 +3,6 @@ TODO - good stuff to work on
 ==== 1 =================
 
 * Create split view with multiple files open
-* Make command line execute any commands - just pipe input and output back and forth
-* Rename - BespinMate, BespMate?
 * Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
     * Clean up path names in general. Shouldn't have a bunch of // and /./ in there
 
@@ -26,4 +24,8 @@ TODO - good stuff to work on
 ==== ? ==================
 * Load entire project directory structure upon startup
     
+
+==== DONE ===============
+* Make command line execute any commands - just pipe input and output back and forth
+* Rename - BespinMate, BespMate? No - Alderaan!
 
