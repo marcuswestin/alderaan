@@ -115,37 +115,6 @@ dojo.provide("bespin.page.editor.init");
             bespin.page.editor.doResize();
         });
 
-        // var whenLoggedIn = function(userinfo) {
-        //     bespin.get('editSession').setUserinfo(userinfo);
-        // 
-        //     bespin.register('settings', new bespin.client.settings.Core());
-        //     
-        //     if (userinfo.serverCapabilities) {
-        //         var sc = userinfo.serverCapabilities;
-        //         bespin.register("serverCapabilities", sc.capabilities);
-        // 
-        //         for (var packagename in sc.dojoModulePath) {
-        //             dojo.registerModulePath(packagename, sc.dojoModulePath[packagename]);
-        //         }
-        // 
-        //         // this is done to trick the build system which would
-        //         // try to find a module called "plugin" below.
-        //         var re = dojo.require;
-        //         sc.javaScriptPlugins.forEach(function(plugin) {
-        //             re.call(dojo, plugin);
-        //         });
-        //     }
-        //     
-        // 
-        //     bespin.publish("authenticated");
-        // };
-        // 
-        // var whenNotLoggedIn = function() {
-        //     bespin.util.navigate.home(); // go back
-        // };
-        // 
-        // // Force a login just in case the user session isn't around
-        // server.currentuser(whenLoggedIn, whenNotLoggedIn);
 		bespin.register('settings', new bespin.client.settings.Core());
 		
 		// Set the version info
