@@ -24,10 +24,6 @@ dojo.declare("bespin.editor.TabManager", null, {
 		bespin.util.css.addClassName(tab.element, 'selected');
 		this.currentTab = tab;
 		bespin.get('editor').openFile(tab.file.project, tab.file.name, {})
-	},
-	
-	removeTab: function(tab) {
-		
 	}
 	
 })
@@ -38,7 +34,7 @@ dojo.declare("bespin.editor.Tab", bespin.lib.Publisher, {
 		this.file = file;
 		this.element = document.createElement('div');
 		bespin.util.css.addClassName(this.element, 'Tab');
-		this.element.innerHTML = file.name;
+		this.element.innerHTML = file.name.split('/').pop();
 		dojo.connect(this.element, 'click', this, 'onClick');
 	},
 	
