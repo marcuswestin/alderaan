@@ -1830,7 +1830,9 @@ dojo.declare("bespin.editor.API", null, {
         this.cursorManager = new bespin.editor.CursorManager(this);
         this.ui = new bespin.editor.UI(this);
         this.theme = bespin.themes['default'];
-
+		this.tabManager = new bespin.editor.TabManager();
+		dojo.byId('header').appendChild(this.tabManager.element);
+		
         this.editorKeyListener = new bespin.editor.DefaultEditorKeyListener(this);
         this.historyManager = new bespin.editor.HistoryManager(this);
         this.customEvents = new bespin.editor.Events(this);

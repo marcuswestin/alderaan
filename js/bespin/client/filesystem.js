@@ -95,6 +95,8 @@ dojo.declare("bespin.client.FileSystem", null, {
                 content: content,
                 timestamp: new Date().getTime()
             });
+
+			bespin.publish('filesystem:loadFile', { project: project, path: path });
         }, onFailure);
     },
 
