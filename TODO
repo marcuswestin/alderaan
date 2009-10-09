@@ -20,6 +20,7 @@ TODO - good stuff to work on
 * Add search over all files - front end or back end?
 * Should be able to load settings from any URL
 * Should be able to import any project from e.g. github
+* Open images as actual images when you click on them
 
 ==== ? ==================
 * Load entire project directory structure upon startup
