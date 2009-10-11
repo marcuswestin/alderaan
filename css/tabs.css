@@ -9,6 +9,7 @@
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	background: #2c2a21;
+	cursor: pointer;
 }
 
 .Tabs .Tab.selected {
