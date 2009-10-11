@@ -78,8 +78,7 @@ dojo.declare("bespin.client.FileSystem", null, {
     // ** {{{ bespin.client.FileSystem.loadContents(project, path, callback) }}}
     //
     // Retrieve the contents of a file (in the given project and path) so we can
-    // perform some processing on it. Called by editFile() if
-    // collaboration is turned off.
+    // perform some processing on it.
     //
     // * {{{project}}} is the name of the project that houses the file
     // * {{{path}}} is the full path to load the file into
@@ -98,28 +97,6 @@ dojo.declare("bespin.client.FileSystem", null, {
 
 			bespin.publish('filesystem:loadFile', { project: project, path: path });
         }, onFailure);
-    },
-
-    // ** {{{ bespin.client.FileSystem.editFile(project, path, callback) }}}
-    //
-    // Load the file in the given project so we can begin editing it.
-    // This loads the file contents via collaboration, so the callback will not
-    // know what the
-    //
-    // * {{{project}}} is the name of the project that houses the file
-    // * {{{path}}} is the full path to load the file into
-    // * {{{onSuccess}}} is a callback to fire if the file is loaded
-    editFile: function(project, path, onSuccess, onFailure) {
-        var session = bespin.get('editSession');
-        // if (session.shouldCollaborate()) {
-        //     session.startSession(project, path, onSuccess, onFailure);
-        // } else {
-            var localOnSuccess = function() {
-                // session.setReadOnlyIfNotMyProject(project);
-                onSuccess.apply(null, arguments);
-            };
-            this.loadContents(project, path, localOnSuccess, onFailure);
-        // }
     },
 
     // Open a file amd eval it in a given scope

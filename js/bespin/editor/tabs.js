@@ -1,6 +1,7 @@
 dojo.declare("bespin.editor.TabManager", null, {
 	
-	constructor: function() {
+	constructor: function(editor) {
+		this.editor = editor;
 		bespin.subscribe("editor:openfile:opensuccess", dojo.hitch(this, 'onFileOpened'));
 		this.tabs = {}
 		this.element = document.createElement('div');
@@ -12,21 +13,30 @@ dojo.declare("bespin.editor.TabManager", null, {
 		if (!this.tabs[file.name]) {
 			var newTab = this.tabs[file.name] = new bespin.editor.Tab(file);
 			this.element.appendChild(newTab.element);
-			newTab.subscribe('Click', dojo.hitch(this, 'selectTab', newTab));
+			newTab.subscribe('Click', dojo.hitch(this, 'selectTabForFile', file.name));
 		}
-		this.selectTab(this.tabs[file.name]);
+		this.selectTabForFile(file.name);
 	},
-	
-	selectTab: function(tab) {
-		if (this.currentTab) {
-			bespin.util.css.removeClassName(this.currentTab.element, 'selected');
+
+	hasTabForFile: function(filename) {
+		return !!this.tabs[filename];
+	},
+
+	selectTabForFile: function(filename) {
+		var tab = this.tabs[filename];
+		if (tab == this.currentTab) { return; }
+		
+		if (this.currentTab) { 
+			bespin.util.css.removeClassName(this.currentTab.element, 'selected'); 
 		}
+		
 		bespin.util.css.addClassName(tab.element, 'selected');
 		this.currentTab = tab;
-		bespin.get('editor').openFile(tab.file.project, tab.file.name, {})
+		
+		var file = tab.file;
+		this.editor.setFile(file.project, file.name, file, false);
 	}
-	
-})
+});
 
 dojo.declare("bespin.editor.Tab", bespin.lib.Publisher, {
 	

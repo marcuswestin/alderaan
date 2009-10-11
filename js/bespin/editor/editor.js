@@ -1830,7 +1830,7 @@ dojo.declare("bespin.editor.API", null, {
         this.cursorManager = new bespin.editor.CursorManager(this);
         this.ui = new bespin.editor.UI(this);
         this.theme = bespin.themes['default'];
-		this.tabManager = new bespin.editor.TabManager();
+		this.tabManager = new bespin.editor.TabManager(this);
 		dojo.byId('header').appendChild(this.tabManager.element);
 		
         this.editorKeyListener = new bespin.editor.DefaultEditorKeyListener(this);
@@ -2195,14 +2195,11 @@ dojo.declare("bespin.editor.API", null, {
         var filename = filename || session.path;
         var options = options || {};
         var fromFileHistory = options.fromFileHistory || false;
-
-        // Short circuit if we are already open at the requested file
-        if (session.checkSameFile(project, filename) && !options.reload) {
-            if (options.line) {
-                commandLine.executeCommand('goto ' + options.line, true);
-            }
-            return;
-        }
+		
+		if (this.tabManager.hasTabForFile(filename)) {
+			this.tabManager.selectTabForFile(filename);
+			return;
+		} 
 
         // If the current buffer is dirty, for now, save it
         if (this.dirty && !session.shouldCollaborate()) {
@@ -2232,40 +2229,27 @@ dojo.declare("bespin.editor.API", null, {
             return;
         }
 
-        var onFailure = function() {
-            bespin.publish("editor:openfile:openfail", { project: project, filename: filename });
-        };
-
-        var onSuccess = function(file) {
-            // TODO: We shouldn't need to to this but originally there was
-            // no onFailure, and this is how failure was communicated
-            if (!file) {
-                onFailure();
-                return;
-            }
-
-            // If collaboration is turned on, we won't know the file contents
-            if (file.content !== undefined) {
-                self.model.insertDocument(file.content);
-                self.cursorManager.moveCursor({ row: 0, col: 0 });
-                self.setFocus(true);
-            }
-
-            session.setProjectPath(project, filename);
-
-            if (options.line) {
-                commandLine.executeCommand('goto ' + options.line, true);
-            }
-
-            self._addHistoryItem(project, filename, fromFileHistory);
-
-            bespin.publish("editor:openfile:opensuccess", { project: project, file: file });
-        };
+        var onFailure = dojo.hitch(bespin, 'publish', 'editor:openfile:openfail', { project: project, filename: filename });
 
         bespin.publish("editor:openfile:openbefore", { project: project, filename: filename });
-
-        bespin.get('files').editFile(project, filename, onSuccess, onFailure);
+		
+		var onSuccess = dojo.hitch(this, function(file){
+			this.setFile(project, filename, file, fromFileHistory);
+			bespin.publish("editor:openfile:opensuccess", { project: project, file: file });
+		});
+		
+        bespin.get('files').loadContents(project, filename, onSuccess, onFailure);
     },
+
+	setFile: function(project, filename, file, fromFileHistory) {
+		this.model.insertDocument(file.content);
+		this.cursorManager.moveCursor({ row: 0, col: 0 });
+		this.setFocus(true);
+
+		bespin.get('editSession').setProjectPath(project, filename);
+		
+		this._addHistoryItem(project, filename, fromFileHistory);
+	},
 
     /**
      * Manage the file history.
