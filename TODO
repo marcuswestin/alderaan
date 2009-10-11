@@ -5,6 +5,11 @@ TODO - good stuff to work on
 * Create split view with multiple files open
 * Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
     * Clean up path names in general. Shouldn't have a bunch of // and /./ in there
+* Make alderaan drivable completely by keyboard - no mouse!
+  * Open files by name
+  * Navigate the file tree
+* Add a little star next to filename in tab to show that it's dirty
+* Make tabs pretties. Sans-serif?
 
 ==== 2 =================
 
@@ -29,4 +34,4 @@ TODO - good stuff to work on
 ==== DONE ===============
 * Make command line execute any commands - just pipe input and output back and forth
 * Rename - BespinMate, BespMate? No - Alderaan!
-
+* Tabs for multiple files being open at the same time
