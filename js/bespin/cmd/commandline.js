@@ -86,6 +86,8 @@ members: {
         }, dojo.body());
         this.nodes.push("popup_refNode");
 
+        this.footer = dojo.byId("footer");
+
         // TODO move this into the popup
         this.filePanel = new filepopup.FilePanel();
 
@@ -200,6 +202,14 @@ members: {
     showPanel: function(panel, coordChange) {
         var coords = this._savedCoords;
 
+        var footerHeight = dojo.style(this.footer, "height") + 2;
+        dojo.style(this.footer, {
+            left: coords.l + "px",
+            width: (coords.w - 10) + "px",
+            bottom: (coords.b - footerHeight) + "px",
+            display: "block"
+        });
+
         dojo.style(this.commandHint, {
             left: coords.l + "px",
             bottom: coords.b + "px",
@@ -292,6 +302,10 @@ members: {
 
         this.currentPanel = undefined;
 
+        dojo.style(this.footer, {
+            "left": "-10000px",
+            "display": "none"
+        });
         this.maxInfoHeight = null;
 
     },
