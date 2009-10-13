@@ -10,6 +10,7 @@ TODO - good stuff to work on
   * Navigate the file tree
 * Add a little star next to filename in tab to show that it's dirty
 * Make tabs pretties. Sans-serif?
+* Remove load files, e.g. commandline-load.js
 
 ==== 2 =================
 

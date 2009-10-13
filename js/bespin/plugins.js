@@ -350,8 +350,8 @@ bespin.plugins.commands.addCommand({
 });
 
 bespin.subscribe("bespin:editor:initialized", function() {
-    bespin.get("files").loadContents("BespinSettings", "plugins.json",
-        function(info) {
+    bespin.get("files").loadContents("BespinSettings", "plugins.json", function(info) {
+			if (!info.content) { return }
             var data = dojo.fromJson(info.content);
             bespin.plugins.metadata = data;
             for (var name in data) {
