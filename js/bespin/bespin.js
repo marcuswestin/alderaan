@@ -228,13 +228,13 @@ dojo.mixin(bespin, {
             bespin.plugins.loadOne("commandLine", function(commandline) {
                 var div = document.body.appendChild(document.createElement('div'));
                 div.id = "footer";
-                div.className = "footer";
+                div.className = "commandline-wrapper";
                 div.innerHTML = '<table class="commandline" cellpadding="0"><tr>\
                         <td class="prompt"><img id="promptimg" src="images/icn_command.png" alt=">" ></td>\
                         <td class="input"><input id="command" spellcheck="false"></td>\
                         <td id="message" align="right" nowrap><a href="https://wiki.mozilla.org/Labs/Bespin/Tips" target="_blank" title="Bespin Tips on the Mozilla Wiki">Click for Help</a></td>\
                     </tr></table>';
-                
+
                 var commandLine = bespin.register("commandLine", 
                     new commandline.Interface('command', bespin.command.store)
                 );
