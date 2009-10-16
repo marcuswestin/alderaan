@@ -1,15 +1,17 @@
 .Tabs {
-	margin: 12px 0 0 23px;
+	margin: 7px 0 0 -1px;
 }
 
 .Tabs .Tab {
 	float: left;
-	padding: 5px;
-	margin: 0 2px;
+	padding: 4px;
+	margin: 0px 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	background: #2c2a21;
 	cursor: pointer;
+	font-family: Tahoma, sans-serif;
+	font-size: 13px;
 }
 
 .Tabs .Tab.selected {
