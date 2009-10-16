@@ -131,7 +131,8 @@ dojo.declare("bespin.editor.DocumentModel", null, {
     },
 
     setRowDirty: function(row) {
-        if (!this.dirtyRows) this.dirtyRows = new Array(this.rows.length);
+        this._hasBeenModified = true;
+		if (!this.dirtyRows) this.dirtyRows = new Array(this.rows.length);
         this.dirtyRows[row] = true;
     },
 
@@ -139,6 +140,14 @@ dojo.declare("bespin.editor.DocumentModel", null, {
         if (!this.dirtyRows) return true;
         return this.dirtyRows[row];
     },
+
+	markAsClean: function() {
+		this._hasBeenModified = false;
+	},
+
+	hasBeenModified: function() {
+		return this._hasBeenModified;
+	},
 
     setRowArray: function(rowIndex, row) {  // invalidate
         if (!dojo.isArray(row)) {
