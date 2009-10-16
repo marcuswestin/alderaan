@@ -937,6 +937,11 @@ dojo.declare("bespin.editor.UI", null, {
         listener.bindKeyString("CMD", Key.SQUARE_BRACKET_CLOSE, this.actions.indent, "Indent");
         listener.bindKeyString("CMD", Key.SQUARE_BRACKET_OPEN, this.actions.unindent, "Unindent");
 
+        var keys = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'ZERO'];
+        for (var i=0; i < keys.length; i++) {
+            listener.bindKeyString('CMD', Key[keys[i]], dojo.hitch(this, 'onNumKey', i));
+        }
+		
         listener.bindKeyString("", Key.ESCAPE, this.actions.escape, "Clear fields and dialogs");
 
         listener.bindKeyString("CMD", Key.A, this.actions.selectAll, "Select All");
@@ -976,6 +981,10 @@ dojo.declare("bespin.editor.UI", null, {
         // listener.bindKeyString("CTRL SHIFT", Key.N, this.editor.newfile, "Create a new file");
         // has been moved to the 'newfile' command withKey
         // Also, the clipboard.js handles C, V, and X
+    },
+    
+    onNumKey: function(tabIndex) {
+        bespin.get('editor').tabManager.selectTabByTabIndex(tabIndex)
     },
 
     getWidth: function() {

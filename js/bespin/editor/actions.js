@@ -906,7 +906,6 @@ dojo.declare("bespin.editor.Actions", null, {
     nextFile: function() {
         bespin.get('editSession').goToNextFile();
     }
- 
 });
 
 //pretty simple: just create a history edit item, call begin before doing anything, and end after everything is done.

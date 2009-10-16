@@ -4,7 +4,7 @@ dojo.declare("bespin.editor.TabManager", null, {
 		this.editor = editor;
 		bespin.subscribe("editor:openfile:opensuccess", dojo.hitch(this, 'onFileOpened'));
 		bespin.subscribe("editor:openfile:openbefore", dojo.hitch(this, 'onBeforeFileOpen'));
-		this.tabs = {}
+		this.tabs = []
 		this.element = document.createElement('div');
 		bespin.util.css.addClassName(this.element, 'Tabs')
 	},
@@ -20,6 +20,7 @@ dojo.declare("bespin.editor.TabManager", null, {
 		var file = event.file;
 		if (!this.tabs[file.name]) {
 			var newTab = this.tabs[file.name] = new bespin.editor.Tab(file);
+			this.tabs.push(newTab);
 			this.element.appendChild(newTab.element);
 			newTab.subscribe('Click', dojo.hitch(this, 'onClickTab', file.name));
 		}
@@ -41,13 +42,20 @@ dojo.declare("bespin.editor.TabManager", null, {
 		
 		if (this.currentTab) { 
 			bespin.util.css.removeClassName(this.currentTab.element, 'selected'); 
-	       	}
+	    }
 		
 		bespin.util.css.addClassName(tab.element, 'selected');
 		this.currentTab = tab;
 		
 		var file = tab.file;
 		this.editor.setFile(file.project, file.name, file, false);
+	},
+	
+	selectTabByTabIndex: function(tabIndex) {
+		if (!this.tabs[tabIndex]) { return; }
+		var filename = this.tabs[tabIndex].file.name;
+		this.onBeforeFileOpen({ filename: filename })
+		this.selectTabForFile(filename);
 	}
 });
 
