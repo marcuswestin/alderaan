@@ -241,17 +241,17 @@ dojo.mixin(bespin, {
                 callback.call(context, commandLine);
             });
         },
-        debugbar: function(callback, context) {
-            bespin.plugins.loadOne("debugbar", function(debug) {
-                var commandLine = bespin.register("debugbar", 
-                    new debug.EvalCommandLineInterface('debugbar_command', null, {
-                        idPrefix: "debugbar_",
-                        parentElement: dojo.byId("debugbar")
-                    })
-                );
-                callback.call(context, commandLine);
-            });
-        },
+        // debugbar: function(callback, context) {
+        //     bespin.plugins.loadOne("debugbar", function(debug) {
+        //         var commandLine = bespin.register("debugbar", 
+        //             new debug.EvalCommandLineInterface('debugbar_command', null, {
+        //                 idPrefix: "debugbar_",
+        //                 parentElement: dojo.byId("debugbar")
+        //             })
+        //         );
+        //         callback.call(context, commandLine);
+        //     });
+        // },
         breakpoints: function(callback, context) {
             bespin.plugins.loadOne("breakpoints", function(BreakpointManager) {
                 var breakpoints = bespin.register("breakpoints", 
