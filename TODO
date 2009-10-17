@@ -17,6 +17,7 @@ TODO - good stuff to work on
 
 ==== 2 =================
 
+* Make the closepairs setting detect if ) is typed, and there is a ) right after it and parens are balenced, then just jump over the paren rather than typing it. A la textmate...
 * Remove header, and all the features
 * Add file open by typing name of file (cmd-T in TextMate)
 * Create refresh command that reloads file tree and text file state from backend
