@@ -2199,20 +2199,6 @@ dojo.declare("bespin.editor.API", null, {
             return;
         }
 
-        if (options.force) {
-            bespin.get('files').whenFileDoesNotExist(project, filename, {
-                execute: function() {
-                    self.newFile(project, filename, options.content || "");
-                },
-                elseFailed: function() {
-                    // TODO: clone options to avoid changing original
-                    options.force = false;
-                    self.openFile(project, filename, options);
-                }
-            });
-            return;
-        }
-
         var onFailure = dojo.hitch(bespin, 'publish', 'editor:openfile:openfail', { project: project, filename: filename });
 
         bespin.publish("editor:openfile:openbefore", { project: project, filename: filename });
