@@ -29,7 +29,6 @@ dojo.mixin(bespin.plugins.loader, {
     loadQueue: {},
     
     moduleLoaded: function(scriptName, moduleFactory) {
-        console.log(scriptName + " module has arrived");
         var isEmpty = bespin.util.isEmpty;
         var contents = moduleFactory.toString();
         var modules = bespin.plugins.loader.modules;
@@ -61,8 +60,6 @@ dojo.mixin(bespin.plugins.loader, {
             }
         }
         
-        console.log("Module: ", scriptName, " depends on ", deps);
-
         if (isEmpty(deps)) {
             bespin.plugins.loader._loaded(scriptName, loadQueue, queueitem);
         }
@@ -100,9 +97,7 @@ dojo.mixin(bespin.plugins.loader, {
         // So, we've successfully loaded this module. Let's
         // clear out dependencies.
         for (var otherScript in loadQueue) {
-            console.log("Checking ", otherScript, " in loadQueue");
             var qi = loadQueue[otherScript];
-            console.log("qi deps: ", qi.deps);
             if (qi.deps && qi.deps[scriptName]) {
                 delete qi.deps[scriptName];
                 if (isEmpty(qi.deps)) {
@@ -134,8 +129,6 @@ dojo.mixin(bespin.plugins.loader, {
         if (loadQueue[scriptName] && !opts.force && !opts.reload) {
             return;
         }
-        
-        console.log("Queued " + scriptName + " for load");
         
         setTimeout(function() {
             if (loadQueue[scriptName]) {
