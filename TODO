@@ -3,6 +3,7 @@ TODO - good stuff to work on
 ==== a1.0 ==============
 
 * Search for all occurances of bespin.subscribe("editor:openfile:opensuccess" and consider replacing them with  bespin.subscribe("tabmanager:selectTab",
+* Make the glass theme acceptable to work with...
 
 ==== a1.1 =================
 
