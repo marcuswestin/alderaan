@@ -35,14 +35,14 @@ dojo.declare("bespin.editor.Events", null, {
          * When a file is opened successfully change the project and file status
          * area, then change the window title, and change the URL hash area
          */
-        bespin.subscribe("editor:openfile:opensuccess", function(event) {
-            var project = event.project || bespin.get('editSession').project;
-            var filename = event.file.name;
-
+        bespin.subscribe("tabmanager:selectTab", function(file) {
+            var project = bespin.get('editSession').project;
+            var filename = file.name;
+			
             try {
                 // reset the state of the editor based on saved cookie
-                var data = dojo.cookie('viewData_' + project + '_' + filename.split('/').join('_'));
-                if (data) {
+                var data = editor.loadViewState(filename)
+				if (data) {
                     bespin.get('editor').resetView(dojo.fromJson(data));
                 } else {
                     bespin.get('editor').basicView();

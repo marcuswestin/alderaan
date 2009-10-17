@@ -85,6 +85,8 @@ dojo.declare("bespin.editor.TabManager", null, {
 		if (!tab.isDirty()) { 
 			this.editor.model.markAsClean();
 		}
+		
+		bespin.publish('tabmanager:selectTab', file);
 	},
 	
 	selectTabByTabIndex: function(tabIndex) {

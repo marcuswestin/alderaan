@@ -2084,40 +2084,16 @@ dojo.declare("bespin.editor.API", null, {
         }
     },
 
-    /**
-     * Observe a request for a new file to be created
-     */
-    newFile: function(project, path, content) {
-        project = project || bespin.get('editSession').project;
-        path = path || "new.txt";
-        var self = this;
-
-        var onSuccess = function() {
-            // If collaboration is turned on, then session.js takes care of
-            // updating the editor with contents, setting it here might break
-            // the synchronization process.
-            // See the note at the top of session.js:EditSession.startSession()
-            if (bespin.get("settings").isSettingOff("collaborate")) {
-                self.model.insertDocument(content || "");
-                self.cursorManager.moveCursor({ row: 0, col: 0 });
-                self.setFocus(true);
-            }
-
-            bespin.publish("editor:openfile:opensuccess", {
-                project: project,
-                file: {
-                    name: path,
-                    content: content || "",
-                    timestamp: new Date().getTime()
-                }
-            });
-
-            bespin.publish("editor:dirty");
-        };
-
-        bespin.get('files').newFile(project, path, onSuccess);
+    // saves the current state of the editor to a cookie
+    saveViewState: function(filename) {
+        if (!filename) { return; }
+        dojo.cookie('viewData_' + filename.split('/').join('_'), dojo.toJson(bespin.get('editor').getCurrentView()), { expires: 7 });
     },
-
+    
+    loadViewState: function(filename) {
+        return dojo.cookie('viewData_' + filename.split('/').join('_'));
+    },
+    
     /**
      * Observe a request for a file to be saved and start the cycle:
      * <ul>
@@ -2132,8 +2108,7 @@ dojo.declare("bespin.editor.API", null, {
         project = project || bespin.get('editSession').project;
         filename = filename || bespin.get('editSession').path; // default to what you have
 
-        // saves the current state of the editor to a cookie
-        dojo.cookie('viewData_' + project + '_' + filename.split('/').join('_'), dojo.toJson(bespin.get('editor').getCurrentView()), { expires: 7 });
+        this.saveViewState(filename);
 
         var file = {
             name: filename,
@@ -2251,6 +2226,11 @@ dojo.declare("bespin.editor.API", null, {
     },
 
 	setFile: function(project, filename, file, fromFileHistory) {
+        var session = bespin.get('editSession');
+        if (filename == session.path) { return; }
+
+        this.saveViewState(session.path);
+
 		this.model.insertDocument(file.content);
 		this.cursorManager.moveCursor({ row: 0, col: 0 });
 		this.setFocus(true);
