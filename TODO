@@ -1,10 +1,13 @@
 TODO - good stuff to work on
 
-==== 1 =================
+==== a1.0 ==============
+
+* Switch syntax when flipping between files
+* Save and restore position in file when flipping between files
+
+==== a1.1 =================
 
 * Create split view with multiple files open
-* Make sure bespin_get_file is really secure - there can't be a way to access parent directories, or it'll be a huge security hole
-    * Clean up path names in general. Shouldn't have a bunch of // and /./ in there
 * Make alderaan drivable completely by keyboard - no mouse!
   * Open files by name
   * Navigate the file tree
