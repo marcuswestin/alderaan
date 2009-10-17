@@ -1,176 +1,174 @@
 <!-- 
-    ***** BEGIN LICENSE BLOCK *****
-    Version: MPL 1.1
-    
-    The contents of this file are subject to the Mozilla Public License Version
-    1.1 (the "License"); you may not use this file except in compliance with
-    the License. You may obtain a copy of the License at
-    http://www.mozilla.org/MPL/
-    
-    Software distributed under the License is distributed on an "AS IS" basis,
-    WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-    for the specific language governing rights and limitations under the
-    License.
-    
-    The Original Code is Bespin.
-    
-    The Initial Developer of the Original Code is Mozilla.
-    Portions created by the Initial Developer are Copyright (C) 2009
-    the Initial Developer. All Rights Reserved.
-    
-    Contributor(s):
-    Bespin Team (bespin@mozilla.com)
-    
-    ***** END LICENSE BLOCK *****
+***** BEGIN LICENSE BLOCK *****
+Version: MPL 1.1
+
+The contents of this file are subject to the Mozilla Public License Version
+1.1 (the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at
+http://www.mozilla.org/MPL/
+
+Software distributed under the License is distributed on an "AS IS" basis,
+WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+for the specific language governing rights and limitations under the
+License.
+
+The Original Code is Bespin.
+
+The Initial Developer of the Original Code is Mozilla.
+Portions created by the Initial Developer are Copyright (C) 2009
+the Initial Developer. All Rights Reserved.
+
+Contributor(s):
+Bespin Team (bespin@mozilla.com)
+
+***** END LICENSE BLOCK *****
 -->
 <!doctype html>
-    <html>
-        <head>
-            <title>Alderaan - Cloud editing brought to Earth</title>
-            <meta http-equiv="X-UA-Compatible" content="chrome=1">
-			
-			<!-- Theme -->
-			<link type="text/css" rel="stylesheet" href="css/themes/glass/editor.css">
-            <link type="text/css" rel="stylesheet" href="css/themes/glass/tabs.css">
-            <script type="text/javascript" src="js/th.compressed.js">
-			</script>
-            <script type="text/javascript">
-                th.global_resources.load("/th/");
-            </script>
-            
-            <!-- Javascript -->
-            <script type="text/javascript">
-                var djConfig = { parseOnLoad: false, isDebug: false, debugAtAllCosts: false };
-            </script>
-            <script type="text/javascript" src="js/dojo/dojo.js.uncompressed.js"></script>
-            
-            <script type='text/javascript' src='js/dojo/regexp.js'></script>
-            <script type='text/javascript' src='js/dojo/cookie.js'></script>
-            <script type='text/javascript' src='js/dojo/AdapterRegistry.js'></script>
-            <script type='text/javascript' src='js/dojo/fx/easing.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/util/util.js'></script>
-            <script type='text/javascript' src='js/bespin/util/canvas.js'></script>
-            <script type='text/javascript' src='js/bespin/util/keys.js'></script>
-            <script type='text/javascript' src='js/bespin/util/navigate.js'></script>
-            <script type='text/javascript' src='js/bespin/util/path.js'></script>
-            <script type='text/javascript' src='js/bespin/util/tokenobject.js'></script>
-            <script type='text/javascript' src='js/bespin/util/mousewheelevent.js'></script>
-            <script type='text/javascript' src='js/bespin/util/urlbar.js'></script>
-            <script type='text/javascript' src='js/bespin/util/css.js'></script>
+<html>
+	<head>
+		<title>Alderaan - Cloud editing brought to Earth</title>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-            <script type='text/javascript' src='js/bespin/lib/publisher.js'></script>
+		<!-- Theme -->
+		<link type="text/css" rel="stylesheet" href="css/themes/glass/editor.css">
+		<link type="text/css" rel="stylesheet" href="css/themes/glass/tabs.css">
+		<script type="text/javascript" src="js/th.compressed.js"></script>
+		<script type="text/javascript">
+			th.global_resources.load("/th/");
+		</script>
 
-            <script type='text/javascript' src='js/bespin/bespin.js'></script>
-            <script type='text/javascript' src='js/bespin/command.js'></script>
-            <script type='text/javascript' src='js/bespin/events.js'></script>
-            <script type='text/javascript' src='js/bespin/client/settings.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/client/filesystem.js'></script>
-            <script type='text/javascript' src='js/bespin/client/status.js'></script>
-            <script type='text/javascript' src='js/bespin/client/server.js'></script>
-            <script type='text/javascript' src='js/bespin/client/session.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/worker/worker.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/editor/actions.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/clipboard.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/cursor.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/editor.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/events.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/model.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/toolbar.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/history.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/quickopen.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/filesearch.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/formatter.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/codecompletion.js'></script>
-            <script type='text/javascript' src='js/bespin/editor/tabs.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/themes/default.js'></script>
-            <script type='text/javascript' src='js/bespin/syntax/base.js'></script>
-            <script type='text/javascript' src='js/bespin/syntax/simple/_base.js'></script>
-            <script type='text/javascript' src='js/bespin/parser/parser.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/cmd/cmd.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/config.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/editor.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/file.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/other.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/project.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/preview.js'></script>
-            <script type='text/javascript' src='js/bespin/wizard.js'></script>
-            <script type='text/javascript' src='js/bespin/social.js'></script>
-            <script type='text/javascript' src='js/bespin/vcs.js'></script>
-            <script type='text/javascript' src='js/bespin/deploy.js'></script>
-            <script type='text/javascript' src='js/bespin/jetpack.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/mobwrite/core.js'></script>
-            <script type='text/javascript' src='js/bespin/mobwrite/diff.js'></script>
-            <script type='text/javascript' src='js/bespin/mobwrite/integrate.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/client/pubsub.js'></script>
-            <script type='text/javascript' src='js/bespin/plugins/loader.js'></script>
-            <script type="text/javascript" src="js/bespin/plugins.js"></script>
-            
-            <script type='text/javascript' src='js/bespin/page/editor/init.js'></script>
-            
-            <script type='text/javascript' src='js/bespin/test.js'></script>
-            <script type='text/javascript' src='js/bespin/testTest.js'></script>
-            <script type='text/javascript' src='js/bespin/wizardTest.js'></script>
-            <script type='text/javascript' src='js/bespin/socialTest.js'></script>
-            <script type='text/javascript' src='js/bespin/cmd/fileTest.js'></script>
-            <script type='text/javascript' src='js/bespin/plugins/loaderTest.js'></script>
-            
-			<!-- jQuery filetree -->
-            <script src="js/jquery/jquery-1.2.1.js" type="text/javascript"></script>
-            <script src="js/jquery/jqueryFileTree.js" type="text/javascript"></script>
-            <link href="js/jquery/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
-            <script type='text/javascript' src='js/bespin/tree/init.js'></script>
+		<!-- Javascript -->
+		<script type="text/javascript">
+			var djConfig = { parseOnLoad: false, isDebug: false, debugAtAllCosts: false };
+		</script>
+		<script type="text/javascript" src="js/dojo/dojo.js.uncompressed.js"></script>
 
-        </head>
-        <body>
-            
-            <!-- TODO: Remove? -->
-            <div id="fileTree"></div>
-            
-            <!-- TODO: Remove? -->
-            <div id="header"></div>
-            
-            <!-- TODO: Remove? -->
-            <div id="editor"></div>
-            
-            <!-- TODO: Remove? -->
-            <div id="preview" style="display: none"></div>
-            
-			<!-- TODO: Remove? -->
-			<div id="centerpopup" style="display:none;"></div>
+		<script type='text/javascript' src='js/dojo/regexp.js'></script>
+		<script type='text/javascript' src='js/dojo/cookie.js'></script>
+		<script type='text/javascript' src='js/dojo/AdapterRegistry.js'></script>
+		<script type='text/javascript' src='js/dojo/fx/easing.js'></script>
 
-			<!-- TODO: Remove? -->
-			<div id="popup_insert_point"></div>
-                        
-			<!-- TODO: Remove? -->
-			<div id="quickopenContainer" style="display:none">
-				<canvas id="quickopen" flowLayout="vertical" width="300" height="402">
-    	    	    <input id="project" style="display:none">
-            	    <input id="input" style="display:none">
-            	    <list id="list" layoutData="1.0"></list>
-        		    <label id="label" text="Enter a filename part"></label>
-        		</canvas>
-            </div>
-                        
-            <!-- TODO: Remove? -->
-            <div id="filesearch" class="popupWindow">
-                <input id="search_text" type="text">
-				<input id="replace_text" type="text">
-				<input id="bu_replace_all" type="button" value="Replace All">
-				<input id="bu_search_next" type="button" value="Next">
-				<input id="bu_search_prev" type="button" value="Previous">
-			</div>
-                        
-			<!-- TODO: Remove? -->
-			<div id="overlay" style="display: none;"></div>
-		</body>
-	</html>
+		<script type='text/javascript' src='js/bespin/util/util.js'></script>
+		<script type='text/javascript' src='js/bespin/util/canvas.js'></script>
+		<script type='text/javascript' src='js/bespin/util/keys.js'></script>
+		<script type='text/javascript' src='js/bespin/util/navigate.js'></script>
+		<script type='text/javascript' src='js/bespin/util/path.js'></script>
+		<script type='text/javascript' src='js/bespin/util/tokenobject.js'></script>
+		<script type='text/javascript' src='js/bespin/util/mousewheelevent.js'></script>
+		<script type='text/javascript' src='js/bespin/util/urlbar.js'></script>
+		<script type='text/javascript' src='js/bespin/util/css.js'></script>
 
+		<script type='text/javascript' src='js/bespin/lib/publisher.js'></script>
+
+		<script type='text/javascript' src='js/bespin/bespin.js'></script>
+		<script type='text/javascript' src='js/bespin/command.js'></script>
+		<script type='text/javascript' src='js/bespin/events.js'></script>
+		<script type='text/javascript' src='js/bespin/client/settings.js'></script>
+
+		<script type='text/javascript' src='js/bespin/client/filesystem.js'></script>
+		<script type='text/javascript' src='js/bespin/client/status.js'></script>
+		<script type='text/javascript' src='js/bespin/client/server.js'></script>
+		<script type='text/javascript' src='js/bespin/client/session.js'></script>
+
+		<script type='text/javascript' src='js/bespin/worker/worker.js'></script>
+
+		<script type='text/javascript' src='js/bespin/editor/actions.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/clipboard.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/cursor.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/editor.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/events.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/model.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/toolbar.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/history.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/quickopen.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/filesearch.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/formatter.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/codecompletion.js'></script>
+		<script type='text/javascript' src='js/bespin/editor/tabs.js'></script>
+
+		<script type='text/javascript' src='js/bespin/themes/default.js'></script>
+		<script type='text/javascript' src='js/bespin/syntax/base.js'></script>
+		<script type='text/javascript' src='js/bespin/syntax/simple/_base.js'></script>
+		<script type='text/javascript' src='js/bespin/parser/parser.js'></script>
+
+		<script type='text/javascript' src='js/bespin/cmd/cmd.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/config.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/editor.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/file.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/other.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/project.js'></script>
+
+		<script type='text/javascript' src='js/bespin/preview.js'></script>
+		<script type='text/javascript' src='js/bespin/wizard.js'></script>
+		<script type='text/javascript' src='js/bespin/social.js'></script>
+		<script type='text/javascript' src='js/bespin/vcs.js'></script>
+		<script type='text/javascript' src='js/bespin/deploy.js'></script>
+		<script type='text/javascript' src='js/bespin/jetpack.js'></script>
+
+		<script type='text/javascript' src='js/bespin/mobwrite/core.js'></script>
+		<script type='text/javascript' src='js/bespin/mobwrite/diff.js'></script>
+		<script type='text/javascript' src='js/bespin/mobwrite/integrate.js'></script>
+
+		<script type='text/javascript' src='js/bespin/client/pubsub.js'></script>
+		<script type='text/javascript' src='js/bespin/plugins/loader.js'></script>
+		<script type="text/javascript" src="js/bespin/plugins.js"></script>
+
+		<script type='text/javascript' src='js/bespin/page/editor/init.js'></script>
+
+		<script type='text/javascript' src='js/bespin/test.js'></script>
+		<script type='text/javascript' src='js/bespin/testTest.js'></script>
+		<script type='text/javascript' src='js/bespin/wizardTest.js'></script>
+		<script type='text/javascript' src='js/bespin/socialTest.js'></script>
+		<script type='text/javascript' src='js/bespin/cmd/fileTest.js'></script>
+		<script type='text/javascript' src='js/bespin/plugins/loaderTest.js'></script>
+
+		<!-- jQuery filetree -->
+		<script src="js/jquery/jquery-1.2.1.js" type="text/javascript"></script>
+		<script src="js/jquery/jqueryFileTree.js" type="text/javascript"></script>
+		<link href="js/jquery/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type='text/javascript' src='js/bespin/tree/init.js'></script>
+
+	</head>
+	<body>
+
+		<!-- TODO: Remove? -->
+		<div id="fileTree"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="header"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="editor"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="preview" style="display: none"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="centerpopup" style="display:none;"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="popup_insert_point"></div>
+
+		<!-- TODO: Remove? -->
+		<div id="quickopenContainer" style="display:none">
+			<canvas id="quickopen" flowLayout="vertical" width="300" height="402">
+				<input id="project" style="display:none">
+				<input id="input" style="display:none">
+				<list id="list" layoutData="1.0"></list>
+				<label id="label" text="Enter a filename part"></label>
+			</canvas>
+		</div>
+
+		<!-- TODO: Remove? -->
+		<div id="filesearch" class="popupWindow">
+			<input id="search_text" type="text">
+			<input id="replace_text" type="text">
+			<input id="bu_replace_all" type="button" value="Replace All">
+			<input id="bu_search_next" type="button" value="Next">
+			<input id="bu_search_prev" type="button" value="Previous">
+		</div>
+
+		<!-- TODO: Remove? -->
+		<div id="overlay" style="display: none;"></div>
+	</body>
+</html>
