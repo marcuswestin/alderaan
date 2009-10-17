@@ -98,7 +98,6 @@
             <script type='text/javascript' src='js/bespin/cmd/file.js'></script>
             <script type='text/javascript' src='js/bespin/cmd/other.js'></script>
             <script type='text/javascript' src='js/bespin/cmd/project.js'></script>
-            <!-- <script type='text/javascript' src='js/bespin/cmd/debug.js'></script> -->
             
             <script type='text/javascript' src='js/bespin/preview.js'></script>
             <script type='text/javascript' src='js/bespin/wizard.js'></script>
@@ -124,14 +123,12 @@
             <script type='text/javascript' src='js/bespin/cmd/fileTest.js'></script>
             <script type='text/javascript' src='js/bespin/plugins/loaderTest.js'></script>
             
+			<!-- jQuery filetree -->
             <script src="js/jquery/jquery-1.2.1.js" type="text/javascript"></script>
-            <!-- <script src="js/jquery/jquery.easing.js" type="text/javascript"></script> -->
             <script src="js/jquery/jqueryFileTree.js" type="text/javascript"></script>
             <link href="js/jquery/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
-            
             <script type='text/javascript' src='js/bespin/tree/init.js'></script>
-            
-            <!-- <script type="text/javascript" src="js/bespin/bootstrap_worker.js"></script> -->
+
         </head>
         <body>
             
@@ -147,34 +144,33 @@
             <!-- TODO: Remove? -->
             <div id="preview" style="display: none"></div>
             
-                        <!-- TODO: Remove? -->
-                        <div id="centerpopup" style="display:none;"></div>
+			<!-- TODO: Remove? -->
+			<div id="centerpopup" style="display:none;"></div>
+
+			<!-- TODO: Remove? -->
+			<div id="popup_insert_point"></div>
                         
-                        <!-- TODO: Remove? -->
-                        <div id="popup_insert_point"></div>
+			<!-- TODO: Remove? -->
+			<div id="quickopenContainer" style="display:none">
+				<canvas id="quickopen" flowLayout="vertical" width="300" height="402">
+    	    	    <input id="project" style="display:none">
+            	    <input id="input" style="display:none">
+            	    <list id="list" layoutData="1.0"></list>
+        		    <label id="label" text="Enter a filename part"></label>
+        		</canvas>
+            </div>
                         
-                        <!-- TODO: Remove? -->
-                        <div id="quickopenContainer" style="display:none">
-                            <canvas id="quickopen" flowLayout="vertical" width="300" height="402">
-                                <input id="project" style="display:none">
-                                <input id="input" style="display:none">
-                                <list id="list" layoutData="1.0"></list>
-                                <label id="label" text="Enter a filename part"></label>
-                            </canvas>
-                        </div>
+            <!-- TODO: Remove? -->
+            <div id="filesearch" class="popupWindow">
+                <input id="search_text" type="text">
+				<input id="replace_text" type="text">
+				<input id="bu_replace_all" type="button" value="Replace All">
+				<input id="bu_search_next" type="button" value="Next">
+				<input id="bu_search_prev" type="button" value="Previous">
+			</div>
                         
-                        <!-- TODO: Remove? -->
-                        <!-- TODO: Remove? -->
-                        <div id="filesearch" class="popupWindow">
-                            <input id="search_text" type="text">
-                            <input id="replace_text" type="text">
-                            <input id="bu_replace_all" type="button" value="Replace All">
-                            <input id="bu_search_next" type="button" value="Next">
-                            <input id="bu_search_prev" type="button" value="Previous">
-                        </div>
-                        
-                        <!-- TODO: Remove? -->
-                        <div id="overlay" style="display: none;"></div>
-                    </body>
-                </html>
+			<!-- TODO: Remove? -->
+			<div id="overlay" style="display: none;"></div>
+		</body>
+	</html>
 
