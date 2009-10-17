@@ -36,12 +36,12 @@ bespin.themes.white = {
     lineMarkerWarningColor: "#B8860B",
     lineMarkerMessageColor: "green",
     zebraStripeColor: "#FFFFFF",
-    highlightCurrentLineColor: "#dddddd",
+    highlightCurrentLineColor: "#DDDDDD",
     editorTextFont: "10pt Monaco, Lucida Console, monospace",
     editorTextColor: "#000000",
-    editorSelectedTextColor: "rgb(240, 240, 240)",
-    editorSelectedTextBackground: "#4d97ff",
-    cursorStyle: "#879aff",
+    editorSelectedTextColor: "#F0F0F0",
+    editorSelectedTextBackground: "#4D97FF",
+    cursorStyle: "#879AFF",
     cursorType: "ibeam",       // one of "underline" or "ibeam"
     unfocusedCursorStrokeStyle: "#FF0033",
     unfocusedCursorFillStyle: "#73171E",
@@ -74,11 +74,11 @@ bespin.themes.white = {
     cdata: "#bdae9d",
     "attribute-value": "#BF9464",
     tag: "#bdae9d",
-    "tag-name": "#bdae9d",
+    "tag-name": "#BDAE9F",
     value: "#BF9464",
     important: "#990000",
     cssclass: "#BF9464",
-    cssid: "#bdae9d"
+    cssid: "#BDAE9D"
 
     // Codemirror additions
     // TODO
