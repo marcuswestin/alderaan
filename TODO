@@ -2,7 +2,7 @@ TODO - good stuff to work on
 
 ==== a1.0 ==============
 
-* Switch syntax when flipping between files
+* Search for all occurances of bespin.subscribe("editor:openfile:opensuccess" and consider replacing them with  bespin.subscribe("tabmanager:selectTab",
 
 ==== a1.1 =================
 
@@ -39,3 +39,5 @@ TODO - good stuff to work on
 * Rename - BespinMate, BespMate? No - Alderaan!
 * Tabs for multiple files being open at the same time
 * Save and restore position in file when flipping between files
+* Switch syntax when flipping between files
+

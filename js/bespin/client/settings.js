@@ -473,15 +473,10 @@ dojo.declare("bespin.client.settings.Events", null, {
         //
         // Set the session path and change the syntax highlighter
         // when a new file is opened
-        bespin.subscribe("editor:openfile:opensuccess", function(event) {
-            if (event.file.name == null) throw new Error("event.file.name falsy");
-            
-            if (event.project) {
-                editSession.project = event.project;
-            }
-            editSession.path = event.file.name;
+        bespin.subscribe("tabmanager:selectTab", function(file) {
+            editSession.path = file.name;
 
-            var fileType = bespin.util.path.fileType(event.file.name);
+            var fileType = bespin.util.path.fileType(file.name);
             if (fileType) {
                 bespin.publish("settings:language", { language: fileType });
             }

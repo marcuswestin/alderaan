@@ -109,11 +109,7 @@ dojo.mixin(bespin.util.path, {
      * (foo.html -&gt; html)
      */
     fileType: function(path) {
-        if (path.indexOf('.') >= 0) {
-            var split = path.split('.');
-            if (split.length > 1) {
-                return split[split.length - 1];
-            }
-        }
+        var filename = path.split('/').pop();
+        return filename.match(/\./) ? filename.split('.').pop() : 'text';
     }
 });
