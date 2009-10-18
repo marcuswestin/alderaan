@@ -30,6 +30,10 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         this.element.style.top = '22px';
         this.element.style.right = '25px';
 
+        var copyButton = this.element.appendChild(document.createElement('button'));
+        dojo.connect(copyButton, 'click', dojo.hitch(this, 'onCopyButtonClick'));
+        copyButton.innerHTML = 'Copy';
+        
         bespin.util.css.addClassName(this.element, 'ThemeEditor');
         
         this.createThemeAttributeList();
@@ -37,7 +41,7 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
     	jQuery(window).bind('resize', dojo.hitch(this, 'onResize'));
         this.onResize();
 
-	this.element.style.backgroundColor = bespin.get('editor').theme['backgroundStyle'];
+		this.element.style.backgroundColor = bespin.get('editor').theme['backgroundStyle'];
     },
     
     onResize: function() {
@@ -78,13 +82,13 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
     
     onColorChange: function(attribute, valueCell, hsbValue, hexValue, rgbValue) {
         if (attribute == 'backgroundStyle') {
-		this.element.style.backgroundColor = '#' + hexValue;
-		var brightness = hsbValue.b > 50 ? hsbValue.b - 30 : hsbValue.b + 30;
-            	var rgb = jQuery.fn.ColorPickerHSBtoRGB({ h: hsbValue.h, s: hsbValue.s, b: brightness });
-            	var rgbArr = [rgb.r, rgb.g, rgb.b];
-            	valueCell.style.backgroundColor = 'rgb(' + rgbArr.join(',') + ')';
-	}
-	jQuery(valueCell)
+			this.element.style.backgroundColor = '#' + hexValue;
+			var brightness = hsbValue.b > 50 ? hsbValue.b - 30 : hsbValue.b + 30;
+            var rgb = jQuery.fn.ColorPickerHSBtoRGB({ h: hsbValue.h, s: hsbValue.s, b: brightness });
+            var rgbArr = [rgb.r, rgb.g, rgb.b];
+            valueCell.style.backgroundColor = 'rgb(' + rgbArr.join(',') + ')';
+		}
+		jQuery(valueCell)
             .text('#' + hexValue)
             .css({ color: '#' + hexValue })
         bespin.get('editor').theme[attribute] = '#' + hexValue;
@@ -93,5 +97,15 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
     onTextValueChange: function(attribute, valueCell, value) {
         jQuery(valueCell).text(value);
         bespin.get('editor').theme[attribute] = value;
+    },
+    
+    onCopyButtonClick: function() {
+        var theme = bespin.get('editor').theme;
+        var jsonString = JSON.stringify(theme);
+        jsonString = jsonString.substring(1, jsonString.length - 1); // remove { and }
+        jsonString = jsonString.replace(/","/g, '",\n\t"'); // newlines and indentations
+        jsonString = jsonString.replace(/":"/g, '": "'); // add space between key and value
+        jsonString = "{\n\t" + jsonString + "\n}"; // add { and }, with proper indentation
+        bespin.get('editor').model.insertDocument(jsonString);
     }
 })
