@@ -28,7 +28,7 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         this.element.style.position = 'absolute';
 
         this.element.style.top = '22px';
-        this.element.style.right = '20px';
+        this.element.style.right = '25px';
 
         bespin.util.css.addClassName(this.element, 'ThemeEditor');
         
@@ -36,6 +36,8 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         
     	jQuery(window).bind('resize', dojo.hitch(this, 'onResize'));
         this.onResize();
+
+	this.element.style.backgroundColor = bespin.get('editor').theme['backgroundStyle'];
     },
     
     onResize: function() {
@@ -74,8 +76,15 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         }
     },
     
-    onColorChange: function(attribute, valueCell, bhsValue, hexValue, rgbValue) {
-        jQuery(valueCell)
+    onColorChange: function(attribute, valueCell, hsbValue, hexValue, rgbValue) {
+        if (attribute == 'backgroundStyle') {
+		this.element.style.backgroundColor = '#' + hexValue;
+		var brightness = hsbValue.b > 50 ? hsbValue.b - 30 : hsbValue.b + 30;
+            	var rgb = jQuery.fn.ColorPickerHSBtoRGB({ h: hsbValue.h, s: hsbValue.s, b: brightness });
+            	var rgbArr = [rgb.r, rgb.g, rgb.b];
+            	valueCell.style.backgroundColor = 'rgb(' + rgbArr.join(',') + ')';
+	}
+	jQuery(valueCell)
             .text('#' + hexValue)
             .css({ color: '#' + hexValue })
         bespin.get('editor').theme[attribute] = '#' + hexValue;

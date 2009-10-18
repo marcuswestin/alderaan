@@ -28,7 +28,7 @@ dojo.provide("bespin.themes.glass");
  * Glass Theme
  */
 bespin.themes.glass = {
-    backgroundStyle: "#dddddd",
+    backgroundStyle: "#FFFFFF",
     gutterStyle: "#d2d2d2",
     lineNumberColor: "#888888",
     lineNumberFont: "10pt Monaco, Lucida Console, monospace",
@@ -63,7 +63,7 @@ bespin.themes.glass = {
     searchHighlightSelected: "#FF9A00",
 
     // syntax definitions
-    plain: "#bdae9d",
+    plain: "#616161",
     keyword: "#0000ff",
     string: "#036907",
     comment: "#0066ff",

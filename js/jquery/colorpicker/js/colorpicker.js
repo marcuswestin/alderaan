@@ -472,13 +472,15 @@
 						setNewColor(col, cal.get(0));
 					}
 				});
-			}
+			},
+			HSBToRGB: HSBToRGB
 		};
 	}();
 	$.fn.extend({
 		ColorPicker: ColorPicker.init,
 		ColorPickerHide: ColorPicker.hidePicker,
 		ColorPickerShow: ColorPicker.showPicker,
-		ColorPickerSetColor: ColorPicker.setColor
+		ColorPickerSetColor: ColorPicker.setColor,
+		ColorPickerHSBtoRGB: ColorPicker.HSBToRGB
 	});
 })(jQuery)
