@@ -1,6 +1,6 @@
 dojo.provide("bespin.themes.default");
 
-dojo.require('bespin.themes.white');
+dojo.require('bespin.themes.glass');
 
-bespin.themes['default'] = bespin.themes.white;
+bespin.themes['default'] = bespin.themes.glass;
 

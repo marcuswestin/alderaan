@@ -1,0 +1,14 @@
+.ThemeEditor {
+    font-size: 11px;
+    border: 2px solid #777;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.ThemeEditor tr:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}

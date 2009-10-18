@@ -22,13 +22,13 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-dojo.provide("bespin.themes.white");
+dojo.provide("bespin.themes.glass");
 
 /**
- * White Theme
+ * Glass Theme
  */
-bespin.themes.white = {
-    backgroundStyle: "#FFFFFF",
+bespin.themes.glass = {
+    backgroundStyle: "#dddddd",
     gutterStyle: "#d2d2d2",
     lineNumberColor: "#888888",
     lineNumberFont: "10pt Monaco, Lucida Console, monospace",
@@ -84,7 +84,7 @@ bespin.themes.white = {
     // TODO
 };
 
-// ** White Zebra Theme **
-bespin.themes.whitezebra = {};
-dojo.mixin(bespin.themes.whitezebra, bespin.themes.white);
-bespin.themes.whitezebra.zebraStripeColor = '#EAEAEA';
+// ** Glass Zebra Theme **
+bespin.themes.glasszebra = {};
+dojo.mixin(bespin.themes.glasszebra, bespin.themes.glass);
+bespin.themes.glasszebra.zebraStripeColor = '#FFFFFF';

@@ -850,6 +850,7 @@ dojo.global = {
 		var ok = this._loadPath(relpath, modArg);
 
 		if(!ok && !omitModuleCheck){
+		    debugger;
 			throw new Error("Could not load '" + moduleName + "'; last tried '" + relpath + "'");
 		}
 
