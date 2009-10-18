@@ -8,7 +8,7 @@
     overflow-y: auto;
 }
 
-.ThemeEditor tr:hover {
+.ThemeEditor .attribute .value:hover {
     background-color: #e6e6e6;
     cursor: pointer;
 }

@@ -47,12 +47,13 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         var table = this.attributesTable = this.element.appendChild(document.createElement('table'));
         for (var key in theme) {
             var row = table.appendChild(document.createElement('tr'));
-            row.className = 'attributeRow'
+            row.className = 'attribute'
             row.innerHTML = '<td class="name"> '+ key +' </td><td class="value">' + theme[key] + '</td>';
+            var valueCell = row.getElementsByTagName('td')[1];
             if (this.isColor(theme[key])) {
-                row.getElementsByTagName('td')[1].style.color = theme[key];
+                valueCell.style.color = theme[key];
             }
-            dojo.connect(row, 'click', row, dojo.hitch(this, 'onClickAttribute', key, row));
+            dojo.connect(valueCell, 'click', row, dojo.hitch(this, 'onClickAttribute', key, row));
         }
     },
     
@@ -64,7 +65,7 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         var value = bespin.get('editor').theme[attribute];
         var valueCell = element.getElementsByTagName('td')[1];
         if (this.isColor(value)) {
-            jQuery(element)
+            jQuery(valueCell)
                 .ColorPicker({ onChange: dojo.hitch(this, 'onColorChange', attribute, valueCell) })
                 .ColorPickerSetColor(value)
                 .ColorPickerShow();

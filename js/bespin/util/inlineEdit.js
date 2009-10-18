@@ -19,6 +19,7 @@ bespin.util.inlineEdit = {
             height: jQuery(element).height()
         })
         .bind('keypress', dojo.hitch(this, 'onKeyPress', element, callback))
+        .bind('blur', dojo.hitch(this, 'onBlur', element, callback))
         .appendTo(document.body);
         this.element.focus();
     },
@@ -27,6 +28,11 @@ bespin.util.inlineEdit = {
         if (this.element) { return; }
         this.element = document.createElement('input');
         this.element.type = 'text';
+    },
+    
+    onBlur: function(element, callback) {
+        callback(jQuery(element).text());
+        document.body.removeChild(this.element);
     },
     
     onKeyPress: function(element, callback, e) {

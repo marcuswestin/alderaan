@@ -4,6 +4,8 @@ TODO - good stuff to work on
 
 * Search for all occurances of bespin.subscribe("editor:openfile:opensuccess" and consider replacing them with  bespin.subscribe("tabmanager:selectTab",
 * Make the glass theme acceptable to work with...
+* Add a theme editor option for getting the json object describing the current theme
+* Move out the button creation for the Theme Editor in init.js
 
 ==== a1.1 =================
 
