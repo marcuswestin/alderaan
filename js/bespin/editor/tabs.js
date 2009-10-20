@@ -46,6 +46,7 @@ dojo.declare("bespin.editor.TabManager", null, {
 			this.tabs.push(newTab);
 			this.element.appendChild(newTab.element);
 			newTab.subscribe('Click', dojo.hitch(this, 'onClickTab', file.name));
+			newTab.subscribe('Close', dojo.hitch(this, 'closeTab', file.name));
 		}
 		this.selectTabForFile(file.name);
 	},
@@ -67,6 +68,25 @@ dojo.declare("bespin.editor.TabManager", null, {
 	onClickTab: function(filename) {
         this.onBeforeFileOpen({ filename: filename });
 		this.selectTabForFile(filename);
+	},
+	
+	closeTab: function(filename) {
+        var nextTab;
+        for (var i=0, tab; tab = this.tabs[i]; i++) {
+			if (tab.file.name == filename) {
+				console.debug('removeTab', i, this.tabs[i]);
+				nextTab = this.tabs[i + 1] || this.tabs[i - 1];
+				tab.element.parentNode.removeChild(tab.element);
+				this.tabs.splice(i, 1);
+			}
+		}
+		window.top.console.debug('nextTab', nextTab, nextTab && nextTab.file.name);
+		if (nextTab) { 
+			this.selectTabForFile(nextTab.file.name); 
+		} else {
+			this.editor.setFile(null, null, null);
+			this.editor.model.markAsClean();
+		}
 	},
 	
 	selectTabForFile: function(filename) {
@@ -103,12 +123,24 @@ dojo.declare("bespin.editor.Tab", bespin.lib.Publisher, {
 		this.file = file;
 		this.element = document.createElement('div');
 		bespin.util.css.addClassName(this.element, 'Tab');
-		this.element.innerHTML = file.name.split('/').pop();
+		var label = this.element.appendChild(document.createElement('div'));
+		label.innerHTML = file.name.split('/').pop();
+		label.className = 'label';
+		
+		var close = this.element.appendChild(document.createElement('div'));
+		close.innerHTML = 'x';
+		close.className = 'closeButton';
+		dojo.connect(close, 'click', this, 'onClickClose');
 		dojo.connect(this.element, 'click', this, 'onClick');
 	},
 	
 	onClick: function() {
 		this.publish('Click');
+	},
+	
+	onClickClose: function(e) {
+		this.publish('Close');
+		dojo.stopEvent(e);
 	},
 
 	markAsClean: function() { this._dirty = false; },
