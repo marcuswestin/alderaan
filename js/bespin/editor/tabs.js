@@ -74,13 +74,11 @@ dojo.declare("bespin.editor.TabManager", null, {
         var nextTab;
         for (var i=0, tab; tab = this.tabs[i]; i++) {
 			if (tab.file.name == filename) {
-				console.debug('removeTab', i, this.tabs[i]);
 				nextTab = this.tabs[i + 1] || this.tabs[i - 1];
 				tab.element.parentNode.removeChild(tab.element);
 				this.tabs.splice(i, 1);
 			}
 		}
-		window.top.console.debug('nextTab', nextTab, nextTab && nextTab.file.name);
 		if (nextTab) { 
 			this.selectTabForFile(nextTab.file.name); 
 		} else {
