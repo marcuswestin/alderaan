@@ -23,6 +23,7 @@
     position: absolute;
     top: 22px;
     right: 25px;
+	font-family: monospace;
 }
 
 .ThemeEditor .attribute .value:hover {
