@@ -1,13 +1,14 @@
 TODO - good stuff to work on
 
-==== a1.0 ==============
+==== a1.0 =================
 
-* Search for all occurances of bespin.subscribe("editor:openfile:opensuccess" and consider replacing them with  bespin.subscribe("tabmanager:selectTab",
-* Make the glass theme acceptable to work with...
-* Move out the button creation for the Theme Editor in init.js
+* Add button for closing tabs
 
 ==== a1.1 =================
 
+* Make sure all missing color types default to "plain"
+* Search for all occurances of bespin.subscribe("editor:openfile:opensuccess" and consider replacing them with  bespin.subscribe("tabmanager:selectTab",
+* Move out the button creation for the Theme Editor in init.js
 * Right now the "Copy" button in the theme editor panel just replaces the current text in the editor with json. Should not replace - maybe open a new tab or something?
 * Create split view with multiple files open
 * Make alderaan drivable completely by keyboard - no mouse!
@@ -45,4 +46,5 @@ TODO - good stuff to work on
 * Save and restore position in file when flipping between files
 * Switch syntax when flipping between files
 * Add a theme editor option for getting the json object describing the current theme
+* Make the glass theme acceptable to work with...
 
