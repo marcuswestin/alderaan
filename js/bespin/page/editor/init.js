@@ -132,14 +132,7 @@ dojo.provide("bespin.page.editor.init");
 		
         var themeEditor = new bespin.editor.ThemeEditor();
         var themeEditorButton = document.body.appendChild(document.createElement('div'));
-        themeEditorButton.style.position = 'absolute';
-        themeEditorButton.style.top = '5px';
-        themeEditorButton.style.right = '20px';
-        themeEditorButton.style.background = '#ddd';
-        themeEditorButton.style.padding = '2px 5px';
-        themeEditorButton.style.fontFamily = 'sans-serif';
-        themeEditorButton.style.fontSize = '11px';
-        themeEditorButton.style.cursor = 'pointer';
+        themeEditorButton.className = 'themeEditorButton';
         themeEditorButton.innerHTML = "edit theme";
         
         dojo.connect(themeEditorButton, 'click', dojo.hitch(themeEditor, 'toggleShow'));

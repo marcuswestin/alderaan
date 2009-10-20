@@ -25,14 +25,10 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         if (this.element) { return; }
         
         this.element = document.createElement('div');
-        this.element.style.position = 'absolute';
-
-        this.element.style.top = '22px';
-        this.element.style.right = '25px';
 
         var copyButton = this.element.appendChild(document.createElement('button'));
         dojo.connect(copyButton, 'click', dojo.hitch(this, 'onCopyButtonClick'));
-        copyButton.innerHTML = 'Copy';
+        copyButton.innerHTML = 'Theme.toJSON';
         
         bespin.util.css.addClassName(this.element, 'ThemeEditor');
         

@@ -1,3 +1,17 @@
+.themeEditorButton {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    background: #ddd;
+    color: #333;
+    padding: 2px 5px;
+    font-family: sans-serif;
+    font-size: 11px;
+    cursor: pointer;    
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
 .ThemeEditor {
     font-size: 11px;
     border: 2px solid #777;
@@ -6,6 +20,9 @@
     padding: 5px;
     background-color: #fff;
     overflow-y: auto;
+    position: absolute;
+    top: 22px;
+    right: 25px;
 }
 
 .ThemeEditor .attribute .value:hover {
