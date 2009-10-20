@@ -70,7 +70,7 @@ bespin.themes.glass = {
     "attribute": "#BF9464",
     "test": "rgb(255,0,0)",
     "cdata": "#bdae9d",
-    "attribute-value": "#BF9464",
+    "attribute-value": "#403485",
     "tag": "#bdae9d",
     "tag-name": "#BDAE9F",
     "value": "#BF9464",
@@ -78,7 +78,8 @@ bespin.themes.glass = {
     "cssclass": "#BF9464",
     "cssid": "#BDAE9D",
     "undefined": "#777777",
-    "attname": "#777777"
+    "attname": "#777777",
+	"color": "#403485"
 }
 
 // ** Glass Zebra Theme **
