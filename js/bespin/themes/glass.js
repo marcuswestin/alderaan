@@ -43,8 +43,8 @@ bespin.themes.glass = {
     "editorSelectedTextBackground": "#bdd9ff",
     "cursorStyle": "#738fff",
     "cursorType": "ibeam",
-    "unfocusedCursorStrokeStyle": "#ffffff",
-    "unfocusedCursorFillStyle": "#335cff",
+    "unfocusedCursorStrokeStyle": "#4a61b3",
+    "unfocusedCursorFillStyle": "#ccd8ff",
     "partialNibStyle": "rgba(100, 100, 100, 0.3)",
     "partialNibArrowStyle": "rgba(255, 255, 255, 0.3)",
     "partialNibStrokeStyle": "rgba(150, 150, 150, 0.3)",
@@ -77,7 +77,8 @@ bespin.themes.glass = {
     "important": "#990000",
     "cssclass": "#BF9464",
     "cssid": "#BDAE9D",
-    "undefined": "#777777"
+    "undefined": "#777777",
+    "attname": "#777777"
 }
 
 // ** Glass Zebra Theme **
