@@ -64,7 +64,7 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
     },
     
     isColor: function(string) {
-        return string.match(/^[\#|rgb]/);
+        return string.match(/^[\#|rgb\(.*\)]/);
     },
     
     onClickAttribute: function(attribute, element) {
@@ -103,8 +103,8 @@ dojo.declare("bespin.editor.ThemeEditor", null, {
         var theme = bespin.get('editor').theme;
         var jsonString = JSON.stringify(theme);
         jsonString = jsonString.substring(1, jsonString.length - 1); // remove { and }
-        jsonString = jsonString.replace(/","/g, '",\n\t"'); // newlines and indentations
         jsonString = jsonString.replace(/":"/g, '": "'); // add space between key and value
+        jsonString = jsonString.replace(/","/g, '",\n\t"'); // newlines and indentations
         jsonString = "{\n\t" + jsonString + "\n}"; // add { and }, with proper indentation
         bespin.get('editor').model.insertDocument(jsonString);
     }
