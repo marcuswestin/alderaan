@@ -27,10 +27,10 @@ dojo.provide("bespin.themes.glass");
 /**
  * Glass Theme
  */
-bespin.themes.glass =  {
+bespin.themes.glass = {
     "backgroundStyle": "#FFFFFF",
-    "gutterStyle": "#d2d2d2",
-    "lineNumberColor": "#888888",
+    "gutterStyle": "#d1d1d1",
+    "lineNumberColor": "#ffffff",
     "lineNumberFont": "10pt Monaco, Lucida Console, monospace",
     "lineMarkerErrorColor": "#CC4444",
     "lineMarkerWarningColor": "#B8860B",
@@ -38,13 +38,13 @@ bespin.themes.glass =  {
     "zebraStripeColor": "#FFFFFF",
     "highlightCurrentLineColor": "#DDDDDD",
     "editorTextFont": "10pt Monaco, Lucida Console, monospace",
-    "editorTextColor": "#000000",
-    "editorSelectedTextColor": "#F0F0F0",
-    "editorSelectedTextBackground": "#4D97FF",
-    "cursorStyle": "#879AFF",
+    "editorTextColor": "#666666",
+    "editorSelectedTextColor": "#787878",
+    "editorSelectedTextBackground": "#bdd9ff",
+    "cursorStyle": "#738fff",
     "cursorType": "ibeam",
-    "unfocusedCursorStrokeStyle": "#FF0033",
-    "unfocusedCursorFillStyle": "#73171E",
+    "unfocusedCursorStrokeStyle": "#ffffff",
+    "unfocusedCursorFillStyle": "#335cff",
     "partialNibStyle": "rgba(100, 100, 100, 0.3)",
     "partialNibArrowStyle": "rgba(255, 255, 255, 0.3)",
     "partialNibStrokeStyle": "rgba(150, 150, 150, 0.3)",
@@ -58,15 +58,15 @@ bespin.themes.glass =  {
     "scrollBarFillGradientTopStop": "rgba(40, 40, 40, %a)",
     "scrollBarFillGradientBottomStart": "rgba(22, 22, 22, %a)",
     "scrollBarFillGradientBottomStop": "rgba(44, 44, 44, %a)",
-    "tabSpace": "#E0D4CB",
-    "searchHighlight": "#B55C00",
-    "searchHighlightSelected": "#FF9A00",
-    "plain": "#616161",
-    "keyword": "#0000ff",
-    "string": "#036907",
-    "comment": "#0066ff",
-    "c-comment": "#0066ff",
-    "punctuation": "#888888",
+    "tabSpace": "#ab581d",
+    "searchHighlight": "#bdbbbd",
+    "searchHighlightSelected": "#9cceff",
+    "plain": "#7d7d7d",
+    "keyword": "#5252c4",
+    "string": "#6b7cc2",
+    "comment": "#b3b3b3",
+    "c-comment": "#b3b3b3",
+    "punctuation": "#8385b3",
     "attribute": "#BF9464",
     "test": "rgb(255,0,0)",
     "cdata": "#bdae9d",
@@ -76,7 +76,8 @@ bespin.themes.glass =  {
     "value": "#BF9464",
     "important": "#990000",
     "cssclass": "#BF9464",
-    "cssid": "#BDAE9D"
+    "cssid": "#BDAE9D",
+    "undefined": "#777777"
 }
 
 // ** Glass Zebra Theme **
