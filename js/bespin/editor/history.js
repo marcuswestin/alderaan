@@ -32,114 +32,84 @@ dojo.provide("bespin.editor.history");
 //
 // Run the undo/redo stack
 dojo.declare("bespin.editor.HistoryManager", null, {
-    constructor: function(editor){
-        this.clear();
+    constructor: function(){
         
-        bespin.subscribe("editor:openfile:opensuccess", function() {
-            bespin.get('editor').historyManager.clear();
-        })
+		// indexed by file name
+		this.histories = {};
+
+        bespin.subscribe('tabmanager:selectTab', dojo.hitch(this, 'onSelectTab'));
+        bespin.subscribe('tabmanager:closeTab', dojo.hitch(this, 'onCloseTab'));
     },
-    
-    clear: function() {
-        this.history = [];
-        this.historyPosition = -1;
-        this.disableAdding = false;
-    },
-    
-    // getRange: returns a range of items. You may then replace them with a bundle that calls them all.
-    getRange: function(start, end)
-    {
-        
-    },
-    
-    // replaceRange: allows you to replace a range of items with another
-    replaceRange: function(start, end, withWhat)
-    {
-        this.history.splice(start, end - start + 1, withWhat);
-    },
-    
+
+	onSelectTab: function(file){
+		this.currentFile = file.name;
+		if (!this.histories[this.currentFile]) { this.histories[this.currentFile] = { position: -1, actions: [] }; }
+	},
+
+	onCloseTab: function(file){
+		delete this.histories[this.currentFile];
+		this.currentFile = null;
+	},
+
+	getCurrent: function() { return this.histories[this.currentFile].position },
+	
     // truncate: removes every entry AFTER the given entry (keeps that entry)
-    truncate: function(keepUntil)
-    {
-        this.history.length = keepUntil + 1;
-        this.historyPosition = Math.min(this.historyPosition, this.history.length - 1);
+    truncate: function(keepUntil) {
+        var history = this.histories[this.currentFile];
+        history.actions.length = keepUntil + 1;
+		history.position = Math.min(history.position, history.actions.length - 1);
     },
-    
-    getCurrent: function()
-    {
-        return this.historyPosition;
-    },
-    
-    undo: function()
-    {
-        if (this.historyPosition < 0)
-            return; //cannot undo
         
-        //undo current action, and decrement position
-        var current = this.history[this.historyPosition];
+    undo: function() {
+        if (this.getCurrent() < 0) { return; }
         
-        // don't let others add
+        var history = this.histories[this.currentFile];
         this.disableAdding = true;
-        
-        // DO IT! But carefully, as we don't want a crash to permanently disable add()
-        try {
-            current.undo();
-        } catch (e) {
-            console.error("There was an error in an undo action: ");
-            console.error(e);
-        }
-        
-        // allow them to add again
+        // try {
+            history.actions[history.position].undo();
+        // } catch (e) {
+        //    console.error("There was an error in an undo action: ");
+        //    console.error(e);
+        //}
         this.disableAdding = false;
-        
-        //and decrement
-        this.historyPosition--;
+        history.position--;
     },
     
-    redo: function()
-    {
-        if (this.historyPosition >= this.history.length - 1) {
-            return; // cannot redo
-        }
+    redo: function() {
+		var history = this.histories[this.currentFile];
+		if (history.position >= history.actions.length - 1) { return; }
         
-        // redo next action, and increment count
-        var next = this.history[this.historyPosition + 1];
-        
-        // don't let others add
         this.disableAdding = true;
-        
-        // DO IT! But carefully, as we don't want a crash to permanently disable add()
-        try {
-            next.redo();
-        } catch (e) {
-            console.error("There was an error in an undo action: ");
-            console.error(e);
-        }
-        
-        // allow them to add again
+        //try {
+            history.actions[history.position + 1].redo();
+        //} catch (e) {
+        //    console.error("There was an error in an undo action: ");
+        //    console.error(e);
+        //}
         this.disableAdding = false;
-        
-        //and increment
-        this.historyPosition++;
+	    history.position++;
     },
     
     add: function(item) {
         if (this.disableAdding) //don't do anything we shouldn't!
             return;
         
-        // make sure we truncate any newer items
-        this.history.length = this.historyPosition + 1;
-        this.history.push(item);
-        this.historyPosition++;
+        // make sure we truncate any newer actions
+        var history = this.histories[this.currentFile];
+		if (!history) { debugger };
+		history.actions.length = history.position + 1;
+        history.actions.push(item);
+        history.position++;
     },
-    
-    canUndo: function() {
-        return this.historyPosition > -1;
-    },
-    
-    canRedo: function() {
-        return this.historyPosition < this.history.length - 1;
-    }
+
+	goToPosition: function(targetPosition) {
+		var history = this.histories[this.currentFile];
+		
+		var funcName = this.histories[this.currentFile].position < targetPosition ? 'redo' : 'undo';
+		while (targetPosition != this.histories[this.currentFile].position) {
+			this[funcName].apply(this);
+		}
+	}
 });
 
 // ** {{{ bespin.editor.HistoryManager }}} **

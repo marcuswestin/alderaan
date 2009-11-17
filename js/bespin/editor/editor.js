@@ -1848,7 +1848,7 @@ dojo.declare("bespin.editor.API", null, {
 
         this.ui.installKeyListener(this.editorKeyListener);
 
-        this.model.insertCharacters({ row: 0, col: 0 }, " ");
+        this.model.insertCharacters({ row: 0, col: 0 }, " ", true);
 
         dojo.connect(this.canvas, "blur",  dojo.hitch(this, function(e) { this.setFocus(false); }));
         dojo.connect(this.canvas, "focus", dojo.hitch(this, function(e) { this.setFocus(true); }));

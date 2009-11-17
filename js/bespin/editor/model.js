@@ -32,14 +32,16 @@ dojo.declare("bespin.editor.DocumentModel", null, {
     constructor: function(editor) {
         this.editor = editor;
         this.clear();
+		this.historyManager = new bespin.editor.HistoryManager();
     },
 
     // addHistoryItem adds an item to the model's history.
     // Erases anything after the current position in the history stack
     addHistoryItem: function(func, data) {
-        this.history.length = this.historyIndex + 1; // if current index == -1 (no history), length = 0. ==0, length = 1.
-        this.history.push({ func: func, data: data });
-        this.historyIndex++;
+        this.historyManager.add({ 
+			undo: dojo.hitch(this, 'unperformHistoryItem', { func: func, data: data }),
+			redo: dojo.hitch(this, 'performHistoryItem', { func: func, data: data })
+		});
     },
     
     performHistoryItem: function(item) {
@@ -90,33 +92,9 @@ dojo.declare("bespin.editor.DocumentModel", null, {
         this.performHistoryItem({func: func, data: data, undo: true});
     },
     
-    applyState: function(state)
-    {
-        if (state >= this.history.length || state < -1) {
-            return; // this would indicate a problem.
-        } else if (state == this.historyIndex) {
-            return; // nothing to do.
-        }
-        
-        if (state > this.historyIndex) {
-            for (var i = this.historyIndex + 1; i <= state; i++) {
-                var historyItem = this.history[i];
-                this.performHistoryItem(historyItem);
-            }
-        } else {
-            for (var i = this.historyIndex; i > state; i--) {
-                var historyItem = this.history[i];
-                this.unperformHistoryItem(historyItem);
-            }
-        }
-        
-        this.historyIndex = state;
-    },
+    applyState: function(state) { this.historyManager.goToPosition(state); },
     
-    getState: function()
-    {
-        return this.historyIndex;
-    },
+    getState: function() { return this.historyManager.getCurrent(); },
     
     isEmpty: function() {
         if (this.rows.length > 1) return false;
@@ -248,8 +226,6 @@ dojo.declare("bespin.editor.DocumentModel", null, {
     clear: function() {
         this.rows = [];
         this.cacheRowMetadata = [];
-        this.history = [];
-        this.historyIndex = -1;
     },
 
     deleteRows: function(row, count) {

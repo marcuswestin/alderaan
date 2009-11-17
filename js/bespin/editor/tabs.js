@@ -53,7 +53,9 @@ dojo.declare("bespin.editor.TabManager", null, {
 	},
 	
 	closeTab: function(filename) {
-        var nextTab;
+		var closingTab = this.getTabByFilename(filename);
+		
+		var nextTab;
         for (var i=0, tab; tab = this.tabs[i]; i++) {
 			if (tab.file.name == filename) {
 				nextTab = this.tabs[i + 1] || this.tabs[i - 1];
@@ -61,10 +63,13 @@ dojo.declare("bespin.editor.TabManager", null, {
 				this.tabs.splice(i, 1);
 			}
 		}
+		
+		bespin.publish('tabmanager:closeTab', closingTab.file);
+		
 		if (nextTab) { 
 			this.selectTabForFile(nextTab.file.name); 
 		} else {
-			this.editor.setFile(null, null, null);
+			this.editor.setFile(null, null, {content: ''});
 			this.editor.model.markAsClean();
 		}
 	},
