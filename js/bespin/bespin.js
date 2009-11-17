@@ -215,7 +215,7 @@ dojo.mixin(bespin, {
         piemenu: function(callback, context) {
             bespin.plugins.loadOne("piemenu", function(piemenumod) {
                 bespin.register("piemenu", new piemenumod.Window());
-                
+
                 // the pie menu doesn't animate properly
                 // without restoring control to the UI temporarily
                 setTimeout(function() {
