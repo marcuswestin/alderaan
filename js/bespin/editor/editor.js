@@ -2222,50 +2222,7 @@ dojo.declare("bespin.editor.API", null, {
 		this.setFocus(true);
 
 		bespin.get('editSession').setProjectPath(project, filename);
-		
-		this._addHistoryItem(project, filename, fromFileHistory);
 	},
-
-    /**
-     * Manage the file history.
-     * TODO: The responsibility for managing history is split between here and
-     * session. It's not totally clear where it should live. Refactor.
-     */
-    _addHistoryItem: function(project, filename, fromFileHistory) {
-        var settings = bespin.get("settings");
-
-        // Get the array of lastused files
-        var lastUsed = settings.getObject("_lastused");
-        if (!lastUsed) {
-            lastUsed = [];
-        }
-
-        // We want to add this to the top
-        var newItem = { project: project, filename: filename };
-
-        if (!fromFileHistory) {
-            bespin.get('editSession').addFileToHistory(newItem);
-        }
-
-        // Remove newItem from down in the list and place at top
-        var cleanLastUsed = [];
-        dojo.forEach(lastUsed, function(item) {
-            if (item.project != newItem.project || item.filename != newItem.filename) {
-                cleanLastUsed.unshift(item);
-            }
-        });
-        cleanLastUsed.unshift(newItem);
-        lastUsed = cleanLastUsed;
-
-        // Trim to 10 members
-        if (lastUsed.length > 10) {
-            lastUsed = lastUsed.slice(0, 10);
-        }
-
-        // Maybe this should have a _ prefix: but then it does not persist??
-        settings.setObject("_lastused", lastUsed);
-    }
-});
 
 /**
  * If the debugger is reloaded, we need to make sure the module is in memory

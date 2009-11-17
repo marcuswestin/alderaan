@@ -9,24 +9,6 @@ dojo.declare("bespin.editor.TabManager", null, {
 		bespin.util.css.addClassName(this.element, 'Tabs')
 		
 		bespin.subscribe("editor:savefile:after", dojo.hitch(this, 'onFileSaved'));
-		
-		// Ghetttttto!
-		// window.onbeforeunload = dojo.hitch(this, 'onBeforeUnload');
-	},
-	
-	onBeforeUnload: function(e) {
-		e = e || window.event;
-		var dirtyTabs = [];
-		for (var i=0, tab; tab = this.tabs[i]; i++) {
-			if (tab.isDirty()) { dirtyTabs.push(tab); }
-		}
-		
-		var numDirty = dirtyTabs.length;
-		if (numDirty) {
-			var text = numDirty + ' unsaved file' + (numDirty > 1 ? 's' : '');
-			e.returnValue = text;
-			return text;
-		}
 	},
 	
 	onBeforeFileOpen: function(properties) {
