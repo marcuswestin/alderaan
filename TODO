@@ -1,9 +1,5 @@
 TODO - good stuff to work on
 
-==== a1.0 =================
-
-* Add button for closing tabs
-
 ==== a1.1 =================
 
 * Make sure all missing color types default to "plain"
@@ -15,7 +11,6 @@ TODO - good stuff to work on
   * Open files by name
   * Navigate the file tree
 * Add a little star next to filename in tab to show that it's dirty
-* Make tabs pretties. Sans-serif?
 * Remove load files, e.g. commandline-load.js
 
 ==== 2 =================
@@ -47,4 +42,6 @@ TODO - good stuff to work on
 * Switch syntax when flipping between files
 * Add a theme editor option for getting the json object describing the current theme
 * Make the glass theme acceptable to work with...
+* Add button for closing tabs
+* Have undo/redo history change with opening/closing of tabs
 
