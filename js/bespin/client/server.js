@@ -306,6 +306,13 @@ dojo.declare("bespin.client.Server", null, {
         this.request('GET', this.getUrl('executeCommand', { commandString: commandString }), null, opts);
     },
 
+	getAllFiles: function(callback) {
+		this.request('GET', this.getUrl('getAllFiles'), null, { onSuccess: function(data){
+			var files = JSON.parse(data);
+			files.pop(); // the php backend adds an extra empty object at the end - fix that...
+			callback(files);
+		} });
+	},
 
     // ** {{{ fetchResource() }}}
     //

@@ -973,7 +973,8 @@ dojo.declare("bespin.editor.UI", null, {
 
         listener.bindKeyString("CMD ALT", Key.LEFT_ARROW, this.actions.previousFile);
         listener.bindKeyString("CMD ALT", Key.RIGHT_ARROW, this.actions.nextFile);
-
+		
+        listener.bindKeyString("CMD", Key.T, this.actions.goToFile, "Open files by auto complete typing")
         // Other key bindings can be found in commands themselves.
         // For example, this:
         // Refactor warning: Below used to have an action - publish to "editor:newfile",

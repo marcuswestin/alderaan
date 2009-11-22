@@ -905,7 +905,72 @@ dojo.declare("bespin.editor.Actions", null, {
 
     nextFile: function() {
         bespin.get('editSession').goToNextFile();
-    }
+    },
+
+	// Lets clean this up and move the styles into CSS...
+	goToFile: function() {
+
+		var overlay = document.body.appendChild(document.createElement('div'));
+		overlay.style.position = 'absolute';
+		overlay.style.fontFamily = 'courier new';
+		overlay.style.color = '#333';
+
+		var input = overlay.appendChild(document.createElement('input'));
+		input.value = 'loading files...';
+		input.style.color = '#666';
+		input.style.width = '200px';
+		input.style.fontStyle = 'italic'; 
+
+		var output = overlay.appendChild(document.createElement('div'));
+		var files;
+		
+		bespin.get('server').getAllFiles(function(data){
+			files = data;
+			
+			input.value = '';
+			input.style.color = '#000';
+			input.style.fontStyle = 'normal'; 
+			input.focus();
+			
+			dojo.connect(input, "onkeyup", function(){
+				var results = [];
+				for (var i=0, file; file = files[i]; i++) {
+					if (file.name.match(input.value)) {
+						results.push(file);
+						if (results.length > 20) { break; }
+					}
+				}
+
+				output.innerHTML = '';
+				for (var i=0, result; result = results[i]; i++) {
+					var line = output.appendChild(document.createElement('span'));
+					line.className = 'result';
+					line.style.lineHeight = '24px';
+					line.style.backgroundColor = 'white';
+					line.style.padding = '5px';
+					line.style['-moz-border-radius'] = '3px';
+					line.style['-webkit-border-radius'] = '3px';
+					line.style.cursor = 'pointer';
+					line.innerHTML = result.name + ' - ' + result.dir + '<br />';
+					dojo.connect(line, 'onclick', dojo.hitch(this, function(file){
+						bespin.get("editor").openFile(bespin.get('editSession').project, file.dir + '/' + file.name, {});
+						overlay.parentNode.removeChild(overlay);
+					}, result));
+				}
+			})
+		})
+		
+		function onResize() {
+			var width = jQuery(window).width();
+			// var height = jQuery(window).height();
+			overlay.style.left = (width - jQuery(overlay).width()) / 2 + 'px';
+			// overlay.style.top = (height - jQuery(overlay).height()) / 2 + 'px';
+		}
+		overlay.style.top = '50px';
+
+		jQuery(window).resize(onResize);
+		onResize();
+	}
 });
 
 //pretty simple: just create a history edit item, call begin before doing anything, and end after everything is done.
