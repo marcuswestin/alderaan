@@ -38,13 +38,13 @@ dojo.declare("bespin.FileFinder", null, {
 		this._output = this._container.appendChild(document.createElement('div'));
 		this._output.className = 'output';
 		
-		dojo.connect(this._input, "onkeyup", dojo.hitch(this, 'onInputKeyUp'), true);
+		dojo.connect(this._input, "onkeypress", dojo.hitch(this, 'onInputKeyPress'), true);
+		dojo.connect(this._input, "onkeydown", dojo.hitch(this, 'onInputKeyDown'), true);
 		
 		jQuery(window).resize(dojo.hitch(this, 'resize'));
 	},
 	
-	onInputKeyUp: function(e) {
-		
+	onInputKeyDown: function(e) {
 		var key = bespin.util.keys.Key;
 		switch(e.keyCode) {
 			case key.UP_ARROW:
@@ -65,23 +65,32 @@ dojo.declare("bespin.FileFinder", null, {
 				this.onClickFile(this._results[this._currentLine])
 				dojo.stopEvent(e);
 				break;
-				
-			default:
-				this._results = [];
-				for (var i=0, file; file = this._files[i]; i++) {
-					if (file.name.match(this._input.value)) {
-						this._results.push(file);
-						if (this._results.length > this._maxLines) { break; }
-					}
-				}
-
-				this._output.innerHTML = '';
-				for (var i=0, result; result = this._results[i]; i++) {
-					this.renderOutput(result);
-				}
-				this.setCurrentLine(0);
-				break;
 		}
+	},
+	
+	onInputKeyPress: function(e) {
+		var key = bespin.util.keys.Key;
+		switch(e.keyCode) {
+			case key.UP_ARROW:
+			case key.DOWN_ARROW:
+			case key.ENTER:
+				dojo.stopEvent(e);
+				return;
+		}
+		
+		this._results = [];
+		for (var i=0, file; file = this._files[i]; i++) {
+			if (file.name.match(this._input.value)) {
+				this._results.push(file);
+				if (this._results.length > this._maxLines) { break; }
+			}
+		}
+
+		this._output.innerHTML = '';
+		for (var i=0, result; result = this._results[i]; i++) {
+			this.renderOutput(result);
+		}
+		this.setCurrentLine(0);
 	},
 	
 	setCurrentLine: function(index) {
