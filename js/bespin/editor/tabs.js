@@ -74,6 +74,10 @@ dojo.declare("bespin.editor.TabManager", null, {
 		}
 	},
 	
+	closeCurrentTab: function() {
+		this.closeTab(this.currentTab.file.name);
+	},
+	
 	selectTabForFile: function(filename) {
 		var tab = this.getTabByFilename(filename);
 		if (tab == this.currentTab) { return; }

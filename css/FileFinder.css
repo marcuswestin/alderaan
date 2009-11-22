@@ -1,0 +1,33 @@
+.FileFinder .container {
+	position: absolute;
+	font-family: monospace;
+	color: #333;
+}
+
+.FileFinder .container .input {
+	width: 200px;
+	padding: 5px;
+}
+
+.FileFinder .container .input.defaultValue {
+	color: #666;
+	width: 200px;
+	font-style: italic;
+}
+
+.FileFinder .container .output {
+	overflow: auto;
+}
+
+.FileFinder .container .output .line {
+	cursor: pointer;
+	background-color: white;
+	padding: 5px;
+	line-height: 24px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.FileFinder .container .output .line.selected {
+	background-color: #ddd;
+}
