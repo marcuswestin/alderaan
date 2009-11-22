@@ -909,8 +909,11 @@ dojo.declare("bespin.editor.Actions", null, {
 
 	findFile: function() {
 		bespin.get('editor').fileFinder.show();
-	}
+	},
 	
+	closeCurrentTab: function() {
+		bespin.get('editor').tabManager.closeCurrentTab();
+	}
 });
 
 //pretty simple: just create a history edit item, call begin before doing anything, and end after everything is done.
