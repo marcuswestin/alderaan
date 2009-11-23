@@ -10,12 +10,14 @@ dojo.mixin(bespin.util.css, {
 	},
 	
 	addClassName: function(el, className) {
+		if (!el) { return; }
 		if (!this.hasClassName(el, className)) {
 			el.className += ' ' + className
 		}
 	},
 	
 	removeClassName: function(el, className) {
+		if (!el) { return; }
 		var regexp = new RegExp("(^|\\s+)" + className + "(\\s+|$)");
 		el.className = this.strip(el.className.replace(regexp, ' '));
 	},
