@@ -6,7 +6,7 @@
                 "pointer": "bespin/editor/popup"
             }]
         ],
-        "location": "/js"
+        "location": document.location.pathname + 'js'
     },
     "command" : {
         "provides": [
@@ -15,7 +15,7 @@
                 "pointer": "bespin/cmd/commandline"
             }]
         ],
-        "location": "/js"
+        "location": document.location.pathname + 'js'
     },
     "piemenu" : {
         "provides": [
@@ -23,7 +23,7 @@
                 "pointer": "bespin/editor/piemenu"
             }]
         ],
-        "location": "/getscript/js"
+        "location": document.location.pathname + "/getscript/js"
     },
     "debug": {
         "provides": [
@@ -46,6 +46,6 @@
                 "pointer": "bespin/debug:BreakpointManager"
             }]
         ],
-        "location": "/getscript/js"
-    }
+        "location": document.location.pathname + "/getscript/js"
+	}
 }

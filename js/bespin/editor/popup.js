@@ -57,7 +57,7 @@ members: {
         // Load the close button image
         this.closer = dojo.create("img", {
             id: "closer",
-            src: "/images/closer.png",
+            src: document.location.pathname + "/images/closer.png",
             alt: "Close the dialog",
             title: "Close the dialog",
             style: {
@@ -77,7 +77,7 @@ members: {
         dojo.forEach(borderIds, function(id) {
             this.border[id] = dojo.create("img", {
                 id: "border_" + id,
-                src: "/images/menu/" + id + ".png",
+                src: document.location.pathname + "/images/menu/" + id + ".png",
                 alt: "pie menu",
                 style: "position:absolute; display:none;"
             }, dojo.body());
