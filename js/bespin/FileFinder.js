@@ -72,11 +72,15 @@ dojo.declare("bespin.FileFinder", null, {
 	onInputKeyPress: function(e) {
 		var key = bespin.util.keys.Key;
 		switch(e.keyCode) {
-			case key.UP_ARROW:
-			case key.DOWN_ARROW:
+			case key.UP_ARROW: case 63232:
+			case key.DOWN_ARROW: case 63233:
 			case key.ENTER:
-			dojo.stopEvent(e);
-			return;
+				dojo.stopEvent(e);
+				return;
+			case key.ESCAPE:
+				dojo.stopEvent(e);
+				this.hide();
+				return;
 		}
 
 		this._results = [];
@@ -117,6 +121,7 @@ dojo.declare("bespin.FileFinder", null, {
 	hide: function() {
 		document.body.removeChild(this._element);
 		this._output.innerHTML = '';
+		bespin.get('editor').setFocus(true);
 	},
 
 	resize: function() {
