@@ -56,7 +56,7 @@ dojo.declare("bespin.FileFinder", null, {
 			break;
 
 			case key.DOWN_ARROW:
-			if (this._currentLine < this._maxLines) {
+			if (this._currentLine + 1 < this._results.length) {
 				this.setCurrentLine(this._currentLine + 1);
 			}
 			dojo.stopEvent(e);
